@@ -51,14 +51,14 @@ export default {
 }
 
 .chat-button {
-  background-color: #DC2626; /* Red */
+  background-color: #252923; /* Red */
   color: white;
   border: none;
   width: 60px;
   height: 60px;
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+  box-shadow: 0 4px 12px rgba(30, 38, 28, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,9 +67,9 @@ export default {
 }
 
 .chat-button:hover {
-  background-color: #B91C1C; /* Darker red */
+  background-color: #444d3c; /* Darker red */
   transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
+  box-shadow: 0 6px 16px rgba(30, 38, 28, 0.16);
 }
 
 .chat-button:active {

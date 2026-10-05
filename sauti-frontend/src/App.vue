@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="flex flex-col min-h-screen" :style="themeStyles">
+  <div id="app" class="editorial-site flex flex-col min-h-screen" :style="themeStyles">
 
     <AppHeader />
 

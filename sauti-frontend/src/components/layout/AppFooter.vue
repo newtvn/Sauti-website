@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-[#006633] text-neutral-white py-20 font-sans">
+  <footer class="editorial-footer bg-[#006633] text-neutral-white py-20 font-sans">
     <div class="container-custom">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
         <!-- Brand Column -->

@@ -1,6 +1,6 @@
 <template>
   <header
-    class="absolute top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300">
+    class="editorial-header relative z-50 transition-all duration-300">
     <!-- Skip link handled in App.vue for better first-element accessibility -->
     <nav class="w-full px-8 lg:px-12" aria-label="Main Navigation">
       <div class="flex items-center justify-between h-[80px]">
@@ -13,7 +13,7 @@
 
         <!-- Centered Desktop Navigation -->
         <div class="hidden lg:flex flex-1 items-center justify-center">
-          <div class="flex items-center gap-8">
+          <div class="flex items-center gap-5">
             <router-link v-for="link in [
               { to: '/', label: 'Home' },
               { to: '/about', label: 'Who We Are' },

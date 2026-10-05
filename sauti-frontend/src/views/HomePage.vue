@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="editorial-home">
     <!-- 1. Hero Section - Take No Chances -->
     <section class="hero-section">
       <div class="hero-container">
@@ -61,7 +61,7 @@
     </section>
 
     <!-- 2. Sauti Updates -->
-    <section class="section-padding bg-white">
+    <section class="home-updates section-padding bg-white">
       <div class="container-custom">
         <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div class="text-left space-y-4">
@@ -182,7 +182,7 @@
 
 
     <!-- 5. Partner Logos -->
-    <section class="section-padding bg-neutral-offwhite">
+    <section class="home-partners section-padding bg-neutral-offwhite">
       <div class="container-custom">
         <div class="text-center mb-12 md:mb-16">
           <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4">
@@ -300,324 +300,39 @@
 </script>
 
 <style scoped>
-  /* Hero Section Styles */
-  .hero-section {
-    background: #ffffff;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 0;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .hero-container {
-    max-width: 100%;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 45% 55%;
-    gap: 0;
-    align-items: center;
-    width: 100%;
-    min-height: 100vh;
-  }
-
-  .hero-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-    padding-left: 12%;
-    padding-right: 3rem;
-    padding-top: 100px;
-    padding-bottom: 6rem;
-    z-index: 2;
-    min-height: 100vh;
-  }
-
-  /* Logos */
-  .hero-logos {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .logo-sauti {
-    height: 80px;
-    width: auto;
-    object-fit: contain;
-  }
-
-  .logo-divider {
-    width: 2px;
-    height: 60px;
-    background: #1a1a1a;
-  }
-
-  .logo-uganda {
-    height: 70px;
-    width: auto;
-    object-fit: contain;
-  }
-
-  /* Hero Message */
-  .hero-message {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .hero-headline {
-    /* font-family: 'Roboto', sans-serif; - Removed to use global Inter */
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 900;
-    line-height: 1;
-    color: #1a1a1a;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    margin: 0;
-    white-space: nowrap;
-  }
-
-  .hero-subheadline {
-    /* font-family: 'Roboto', sans-serif; */
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
-    font-weight: 900;
-    line-height: 1.2;
-    color: #ED1C24;
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
-    margin: 0;
-  }
-
-  .hero-cta-text {
-    /* font-family: 'Roboto', sans-serif; */
-    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-    color: #333;
-    margin-top: 0.5rem;
-  }
-
-  .hotline-number {
-    font-weight: 900;
-    font-style: normal;
-    color: #ED1C24;
-  }
-
-  /* Action Buttons */
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-call-now {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 2.5rem;
-    background: #ED1C24;
-    color: white;
-    /* font-family: 'Roboto', sans-serif; */
-    font-weight: 700;
-    font-size: 1.1rem;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(237, 28, 36, 0.3);
-  }
-
-  .btn-call-now:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(237, 28, 36, 0.4);
-  }
-
-  .btn-report-online {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 2.5rem;
-    background: #006837;
-    color: white;
-    /* font-family: 'Roboto', sans-serif; */
-    font-weight: 700;
-    font-size: 1.1rem;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(0, 104, 55, 0.3);
-  }
-
-  .btn-report-online:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0, 104, 55, 0.4);
-  }
-
-  .btn-icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  /* Hero Image */
-  .hero-image-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: stretch;
-    height: 100vh;
-    position: relative;
-    margin-right: 0;
-    overflow: hidden;
-  }
-
-  .hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  @media (max-width: 1024px) {
-    .hero-container {
-      grid-template-columns: 1fr;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .hero-content {
-      padding-left: 1rem;
-      padding-right: 1rem;
-      padding-top: 1rem;
-      padding-bottom: 2rem;
-      align-items: center;
-      order: 2;
-      /* Massive Overlap: Pull content way up to sit "inside" the photo area */
-      margin-top: -450px; 
-      position: relative;
-      /* Removed gradient for cleaner 'cutout' look if desired, or keep transparent */
-      background: transparent;
-      width: 100%;
-      border-radius: 0;
-      z-index: 10;
-    }
-
-    /* HIDE LOGOS ON MOBILE TO REMOVE WHITE BOX CLUTTER */
-    .hero-logos {
-      display: none;
-    }
-
-    .logo-divider {
-      display: none;
-    }
-
-    .hero-headline {
-       color: #1a1a1a;
-       font-size: 2.8rem; /* Slightly larger */
-       text-shadow: 0 0 15px rgba(255,255,255,0.9), 0 0 30px rgba(255,255,255,1);
-    }
-    
-    .hero-subheadline {
-        text-shadow: 0 0 15px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,1);
-    }
-
-    .hotline-number {
-        text-shadow: 0 0 15px rgba(255,255,255,0.9);
-    }
-  }
-
-  @media (max-width: 640px) {
-    .hero-content {
-       margin-top: -95vh; /* Move it extremely high to start */
-       padding-top: 60px; /* Reduced top padding */
-       text-shadow: none;
-       display: flex;
-       flex-direction: column;
-       align-items: center; 
-       text-align: center;
-       height: 90vh; 
-       justify-content: flex-start; 
-    }
-
-    .hero-message {
-       margin-bottom: 2rem; /* Reduced space between text and buttons */
-       display: flex;
-       flex-direction: column;
-       gap: 0.25rem; /* Tighter text gap */
-       width: 100%;
-    }
-
-    .hero-actions {
-      justify-content: center; 
-      width: 100%;
-      margin-top: auto; /* Push buttons down but keep them in container */
-      margin-bottom: 4rem; /* Lift them up from the very bottom edge */
-    }
-
-    .hero-headline {
-       font-size: 2rem; /* Slightly smaller to fit better */
-       text-shadow: 0 0 20px rgba(255,255,255,0.95);
-       text-align: center;
-       width: 100%;
-       line-height: 1;
-    }
-    
-    .hero-subheadline {
-        font-size: 1.5rem;
-    }
-
-    .hero-image-container {
-       height: 100vh;
-    }
-    
-    /* Pull the next section (Sauti Updates) up */
-    .hero-section {
-       margin-bottom: -60px; /* Reduced from -100px/-150px to stop cutting off content */
-       padding-bottom: 0;
-       height: auto; 
-       min-height: auto;
-    }
-  }
-
-  /* Other existing styles */
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .section-padding {
-    @apply py-20;
-  }
-
-  @media (min-width: 768px) {
-    .section-padding {
-      @apply py-32;
-    }
-  }
-
-  /* Support for any legacy AVM classes if they surface from dynamic content */
-  .avm-card {
-    @apply p-8 rounded-[1.5rem] border border-neutral-offwhite bg-neutral-white transition-all duration-300 ease-in-out hover:shadow-xl;
-  }
-
-  .avm-icon {
-    @apply w-16 h-16 rounded-2xl flex items-center justify-center mb-6;
-  }
-
-  .avm-title {
-    @apply text-xl font-bold mb-4 text-secondary;
-  }
-
-  .avm-text {
-    @apply leading-relaxed text-secondary;
-  }
+.hero-section { background: var(--editorial-paper); padding: 24px clamp(20px, 5vw, 80px) 64px; }
+.hero-container { max-width: 1440px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 80px); align-items: center; }
+.hero-content { display: flex; flex-direction: column; align-items: flex-start; gap: 36px; padding: 24px 0; min-width: 0; }
+.hero-logos { display: flex; gap: 20px; align-items: center; }
+.logo-sauti { height: 44px; width: auto; }
+.logo-uganda { height: 44px; width: auto; }
+.logo-divider { height: 36px; width: 1px; background: var(--editorial-line); }
+.hero-message { display: flex; flex-direction: column; gap: 20px; }
+.hero-headline { font-size: clamp(64px, 7.4vw, 112px); font-weight: 400; line-height: .94; letter-spacing: -.065em; color: var(--editorial-ink); margin: 0; max-width: 8ch; text-wrap: balance; }
+.hero-subheadline { font-size: clamp(24px, 2.5vw, 36px); font-weight: 400; letter-spacing: -.035em; color: var(--editorial-ink); margin: 0; }
+.hero-cta-text { margin: 0; font-size: 18px; color: var(--editorial-ink); }
+.hotline-number { color: rgb(var(--color-secondary)); font-weight: 700; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn-call-now, .btn-report-online { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 20px; border-radius: 100px; font-size: 14px; font-weight: 500; text-decoration: none; transition: background .2s ease, transform .2s ease; }
+.btn-call-now { background: var(--editorial-ink); color: var(--editorial-paper); }
+.btn-report-online { border: 1px solid var(--editorial-line); color: var(--editorial-ink); }
+.btn-call-now:hover { background: rgb(var(--color-secondary)); transform: translateY(-2px); }
+.btn-report-online:hover { background: var(--editorial-muted); }
+.btn-icon { width: 20px; height: 20px; }
+.hero-image-container { height: clamp(440px, 48vw, 690px); overflow: hidden; border-radius: 32px; clip-path: polygon(23% 0, 100% 0, 100% 74%, 76% 100%, 0 100%, 0 24%); background: var(--editorial-muted); }
+.hero-image { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.section-padding { padding-block: clamp(64px, 8vw, 112px); }
+.line-clamp-2, .line-clamp-3 { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-2 { -webkit-line-clamp: 2; }
+.line-clamp-3 { -webkit-line-clamp: 3; }
+@media (max-width: 900px) {
+ .hero-container { grid-template-columns: 1fr; gap: 32px; }
+ .hero-content { gap: 24px; padding: 0; }
+ .hero-headline { font-size: clamp(62px, 12vw, 96px); max-width: 12ch; }
+ .hero-image-container { height: clamp(320px, 75vw, 560px); }
+ .hero-section { padding-top: 24px; padding-bottom: 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .btn-call-now, .btn-report-online { transition: none; }
+}
 </style>

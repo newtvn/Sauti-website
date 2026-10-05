@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -318,3 +317,7 @@
     font-family: 'Poppins', 'Inter', sans-serif;
   }
 }
+
+/* Native system typography shared with the public site. */
+:root { --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", sans-serif; }
+body, #app, #app *, input, textarea, button, select { font-family: var(--font-system) !important; }

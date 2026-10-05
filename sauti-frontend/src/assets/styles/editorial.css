@@ -1,0 +1,90 @@
+/* Reference-led presentation; CMS colours and functional components remain intact. */
+:root {
+  --editorial-paper: #fafbf8;
+  --editorial-ink: #1c201d;
+  --editorial-muted: #eef0eb;
+  --editorial-line: #d9ded5;
+}
+
+html { background: var(--editorial-paper); }
+.editorial-site { background: var(--editorial-paper); color: var(--editorial-ink); }
+.editorial-site :is(h1, h2, h3) { letter-spacing: -.045em; }
+.editorial-site #main-content > div { background-color: var(--editorial-paper); }
+.editorial-site .container-custom { max-width: 1440px; padding-inline: clamp(20px, 5vw, 80px); }
+.editorial-site #main-content > div > :is(header, .page-header) {
+  background: var(--editorial-paper);
+  padding-block: clamp(48px, 7vw, 96px);
+  text-align: left;
+  border-bottom: 1px solid var(--editorial-line);
+  margin-bottom: 40px;
+}
+.editorial-site #main-content > div > :is(header, .page-header) h1 {
+  color: var(--editorial-ink);
+  font-size: clamp(44px, 6.5vw, 88px);
+  line-height: 1.02;
+  font-weight: 400;
+  text-transform: none;
+  max-width: 16ch;
+}
+.editorial-site #main-content > div > :is(header, .page-header) p {
+  margin-left: 0;
+  max-width: 60ch;
+  font-weight: 400;
+}
+.editorial-site .page-header-title span { color: rgb(var(--color-secondary)); }
+.editorial-site #main-content > div > section:first-child h1 {
+  font-weight: 400;
+  letter-spacing: -.055em;
+  text-transform: none;
+}
+.editorial-site .campaign-header { text-transform: none; font-weight: 400; letter-spacing: -.045em; }
+.editorial-header { background: var(--editorial-paper); border-bottom: 1px solid var(--editorial-line); }
+.editorial-header > nav { max-width: 1600px; margin: auto; padding-inline: clamp(20px, 4vw, 64px); }
+.editorial-header h1 { font-size: 20px; letter-spacing: -.055em; }
+.editorial-header a { font-size: 13px; }
+.editorial-header a[class*="shadow"] { box-shadow: none; }
+.editorial-header a[aria-label="Call Emergency Helpline 116"] { background: var(--editorial-ink); }
+.editorial-header nav a:focus-visible,
+.editorial-home a:focus-visible { outline: 3px solid rgb(var(--color-primary)); outline-offset: 5px; }
+.editorial-home .home-updates { background: var(--editorial-ink); color: var(--editorial-paper); }
+.editorial-home .home-updates :is(h2, h3, p) { color: var(--editorial-paper); }
+.editorial-home .home-updates h2 { font-size: clamp(36px, 4.8vw, 68px); line-height: 1.04; max-width: 14ch; }
+.editorial-home .home-updates h3 { font-weight: 400; letter-spacing: -.035em; }
+.editorial-home .home-updates p { font-weight: 400; }
+.editorial-home .home-updates .text-primary { color: #b4d8bf; }
+.editorial-home .home-updates a[aria-label] { color: var(--editorial-ink); }
+.editorial-home .home-updates a[aria-label]:hover { color: var(--editorial-paper); }
+.editorial-home .home-updates :is(.shadow-xl, .shadow-md) { box-shadow: none; }
+.editorial-home .home-updates .aspect-\[16\/10\] { border-radius: 24px; clip-path: polygon(0 0, 100% 0, 100% 78%, 82% 100%, 0 100%); }
+.editorial-home .home-updates .flex.flex-col.gap-8 > div { padding-bottom: 24px; border-bottom: 1px solid #454b45; }
+.editorial-home .home-updates .inline-flex.rounded-full { background: transparent; border-color: #454b45; color: #b4d8bf; }
+.editorial-home .home-partners { background: var(--editorial-muted); }
+.editorial-home .home-partners h2 { font-size: clamp(32px, 4vw, 56px); font-weight: 400; color: var(--editorial-ink); }
+.editorial-home .home-partners .text-center { text-align: left; }
+.editorial-home .home-partners p { margin-left: 0; }
+.editorial-footer { background: var(--editorial-ink); border-top: 1px solid #454b45; }
+.editorial-footer h2 { font-size: clamp(40px, 6vw, 80px); font-weight: 400; text-transform: none; }
+.editorial-footer :is(p, a) { font-weight: 400; }
+.editorial-footer p { color: #d3dad2; }
+.editorial-footer h3 { color: #aab5a9; }
+.editorial-footer a:hover { color: #b4d8bf; }
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .editorial-header .gap-5 { gap: 12px; }
+  .editorial-header .hidden.lg\:flex.items-center.gap-3 a { padding-inline: 12px !important; }
+}
+@media (max-width: 640px) {
+  .editorial-site #main-content > div > :is(header, .page-header) { padding-block: 40px; }
+  .editorial-home .home-updates .flex.gap-6.items-start { gap: 16px; }
+  .editorial-home .home-updates .w-32 { width: 88px; height: 112px; }
+  .editorial-home .home-updates h3 { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .editorial-site *, .editorial-site *::before, .editorial-site *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Native Apple typography, with local fallbacks on other platforms. */
+.editorial-site, .editorial-site *, .editorial-site input, .editorial-site textarea, .editorial-site button { font-family: var(--font-system) !important; }
