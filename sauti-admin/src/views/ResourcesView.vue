@@ -116,7 +116,7 @@
       <div
         class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-          <h3 class="text-lg font-medium text-gray-900 mb-4" style="font-family: 'Roboto', sans-serif;">Add New Resource
+          <h3 class="text-lg font-medium text-gray-900 mb-4" style="font-family: var(--font-system);">Add New Resource
           </h3>
           <form @submit.prevent="createResource">
             <div class="space-y-4">
@@ -181,7 +181,7 @@
       <div
         class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-          <h3 class="text-lg font-medium text-gray-900 mb-4" style="font-family: 'Roboto', sans-serif;">Edit Resource
+          <h3 class="text-lg font-medium text-gray-900 mb-4" style="font-family: var(--font-system);">Edit Resource
           </h3>
           <form @submit.prevent="updateResource">
             <div class="space-y-4">

@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="flex justify-between items-start">
       <div>
-        <h1 class="text-2xl font-bold text-gray-900" style="font-family: 'Roboto', sans-serif;">Blogs</h1>
+        <h1 class="text-2xl font-bold text-gray-900" style="font-family: var(--font-system);">Blogs</h1>
         <p class="text-gray-600 mt-1">Share inspiring stories of impact and transformation</p>
       </div>
       <button

@@ -94,15 +94,7 @@
 <script setup>
     import { computed } from 'vue'
     import BaseCTA from '@/components/common/BaseCTA.vue'
-    import {
-        ChevronDownIcon,
-        InformationCircleIcon,
-        CheckCircleIcon,
-        UserGroupIcon,
-        ShieldCheckIcon,
-        GlobeAltIcon,
-        ScaleIcon
-    } from '@heroicons/vue/24/outline'
+    import { ChevronDown as ChevronDownIcon, Info as InformationCircleIcon, CircleCheck as CheckCircleIcon, Users as UserGroupIcon, ShieldCheck as ShieldCheckIcon, Globe as GlobeAltIcon, Scale as ScaleIcon } from 'lucide-vue-next'
 
     const props = defineProps({
         service: {

@@ -2,21 +2,21 @@
   <div class="space-y-12">
     <!-- 1. Category Filter -->
     <div v-if="categories && categories.length > 0"
-      class="bg-neutral-white rounded-[2.5rem] border-2 border-neutral-offwhite p-8 shadow-sm">
-      <h2 class="campaign-header text-sm text-secondary mb-6 opacity-40">Knowledge Base Categories</h2>
+      class="bg-neutral-white rounded-2xl border-2 border-neutral-offwhite p-8 shadow-sm">
+      <h2 class="faq-categories-title text-secondary mb-6">Knowledge Base Categories</h2>
       <div class="flex flex-wrap gap-3">
         <button @click="selectCategory(null)" :class="[
-          'px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border-2',
+          'px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border-2',
           selectedCategory === null
-            ? 'bg-primary border-primary text-neutral-white shadow-lg scale-105'
+            ? 'bg-primary border-primary text-neutral-white shadow-sm'
             : 'bg-neutral-white border-neutral-offwhite text-black/50 hover:border-primary hover:text-primary'
         ]">
           All Topics
         </button>
         <button v-for="cat in categories" :key="cat.slug" @click="selectCategory(cat.slug)" :class="[
-          'px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border-2',
+          'px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border-2',
           selectedCategory === cat.slug
-            ? 'bg-primary border-primary text-neutral-white shadow-xl scale-105'
+            ? 'bg-primary border-primary text-neutral-white shadow-sm'
             : 'bg-neutral-white border-neutral-offwhite text-black/50 hover:border-primary hover:text-primary'
         ]">
           {{ cat.name }}
@@ -30,7 +30,7 @@
     </div>
 
     <!-- 3. Error State -->
-    <div v-else-if="error" class="bg-emergency/5 border-2 border-emergency/20 rounded-[2.5rem] p-12 text-center">
+    <div v-else-if="error" class="bg-emergency/5 border-2 border-emergency/20 rounded-2xl p-12 text-center">
       <ExclamationTriangleIcon class="w-12 h-12 text-emergency mx-auto mb-6" />
       <p class="text-black/70 font-bold mb-8">{{ error }}</p>
       <BaseCTA @click="$emit('retry')" variant="primary">
@@ -133,13 +133,7 @@
 <script setup>
   import { ref, computed } from 'vue'
   import BaseCTA from '../common/BaseCTA.vue'
-  import {
-    ChevronDownIcon,
-    QuestionMarkCircleIcon,
-    EyeIcon,
-    InformationCircleIcon,
-    ExclamationTriangleIcon
-  } from '@heroicons/vue/24/outline'
+  import { ChevronDown as ChevronDownIcon, CircleHelp as QuestionMarkCircleIcon, Eye as EyeIcon, Info as InformationCircleIcon, TriangleAlert as ExclamationTriangleIcon } from 'lucide-vue-next'
 
   const props = defineProps({
     faqs: { type: Array, default: () => [] },

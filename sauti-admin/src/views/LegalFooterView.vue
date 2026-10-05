@@ -2,7 +2,7 @@
   <div class="p-6 space-y-6">
     <!-- Header -->
     <div class="mb-8">
-      <h1 class="text-2xl font-bold text-gray-900" style="font-family: 'Roboto', sans-serif;">Legal & Footer Content</h1>
+      <h1 class="text-2xl font-bold text-gray-900" style="font-family: var(--font-system);">Legal & Footer Content</h1>
       <p class="text-gray-600 mt-1">Manage privacy policy, terms of service, and footer text displayed across your website</p>
     </div>
 

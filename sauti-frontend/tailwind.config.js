@@ -44,7 +44,7 @@ export default {
       },
       fontFamily: {
         // Sauti 116 Institutional Voice: Roboto is now the primary brand typeface to match Admin console.
-        sans: ['Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', 'sans-serif'],
       },
       boxShadow: {
         'glow-hotline': '0 0 12px rgb(var(--color-hotline) / 0.4)',

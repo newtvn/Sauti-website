@@ -23,7 +23,7 @@ a {
 
 /* Reset typography */
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-system);
   font-size: 18px;
   line-height: 1.7;
   background-color: #fff;

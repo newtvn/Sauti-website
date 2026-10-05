@@ -22,7 +22,7 @@
         <div class="hidden md:block w-5/12"></div>
 
         <!-- Dot / Year Indicator -->
-        <div class="z-20 flex items-center justify-center order-1 bg-gray-800 shadow-xl w-12 h-12 rounded-full border-4 border-white transition-transform duration-300 hover:scale-125 shrink-0 relative">
+        <div class="z-20 flex items-center justify-center order-1 bg-primary shadow-xl w-12 h-12 rounded-full border-4 border-white transition-transform duration-300  shrink-0 relative">
           <span class="font-black text-xs text-white">{{ getYear(event) }}</span>
         </div>
 
@@ -46,15 +46,11 @@
              Even Items (2nd, 4th... Index 1, 3): Orange Gradient.
         -->
         <div
-          class="order-1 rounded-2xl shadow-lg w-[calc(100%-4rem)] ml-6 md:ml-0 md:w-5/12 px-6 py-8 transition-all duration-300 hover:-translate-y-1 group relative bg-gradient-to-br"
-          :class="[
-            index % 2 === 0 
-              ? 'from-[#1e40af] to-[#3b82f6]' // Blue for Odd (1st) item
-              : 'from-[#c2410c] to-[#f97316]' // Orange for Even (2nd) item
-          ]"
+          class="order-1 rounded-2xl shadow-lg w-[calc(100%-4rem)] ml-6 md:ml-0 md:w-5/12 px-6 py-8 transition-all duration-300 hover:-translate-y-1 group relative bg-white border border-neutral-offwhite"
+
         >
-          <h3 class="mb-3 font-black text-white text-xl md:text-2xl tracking-tight leading-none">{{ event.title }}</h3>
-          <p class="text-base md:text-lg leading-relaxed text-white/90 font-medium">
+          <h3 class="mb-3 font-black text-secondary text-xl md:text-2xl tracking-tight leading-none">{{ event.title }}</h3>
+          <p class="text-base md:text-lg leading-relaxed text-black/70 font-medium">
             {{ event.description }}
           </p>
         </div>

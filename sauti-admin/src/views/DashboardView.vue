@@ -3,7 +3,7 @@
     <!-- Enhanced Header -->
     <div class="flex items-center justify-between">
       <div>
-        <h1 class="text-4xl font-bold mb-2" style="font-family: 'Roboto', sans-serif; color: #222222;">Content Management Dashboard</h1>
+        <h1 class="text-4xl font-bold mb-2" style="font-family: var(--font-system); color: #222222;">Content Management Dashboard</h1>
         <p class="text-lg" style="color: #555555;">Manage your website content, blog posts, videos, and resources</p>
       </div>
       <div class="flex gap-3">
@@ -82,7 +82,7 @@
     <!-- Enhanced Content Management -->
     <div class="card">
       <div class="card-header">
-        <h2 class="text-2xl font-bold mb-2" style="font-family: 'Roboto', sans-serif; color: #222222;">Content Management</h2>
+        <h2 class="text-2xl font-bold mb-2" style="font-family: var(--font-system); color: #222222;">Content Management</h2>
         <p style="color: #555555;">Manage your blog posts, videos, resources, and other content</p>
       </div>
         

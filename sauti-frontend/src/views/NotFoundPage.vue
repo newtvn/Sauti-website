@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-neutral-white flex flex-col justify-center items-center section-padding">
+  <div class="public-page min-h-screen bg-neutral-white flex flex-col justify-center items-center section-padding">
     <div class="container-custom max-w-4xl text-center">
       <!-- 404 Illustration placeholder or Icon -->
       <div class="relative inline-block mb-16">
@@ -8,7 +8,7 @@
           404</h1>
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
           <div
-            class="w-32 h-32 md:w-48 md:h-48 bg-neutral-white rounded-[3rem] shadow-2xl border-4 border-primary flex items-center justify-center animate-bounce-slow">
+            class="w-32 h-32 md:w-48 md:h-48 bg-neutral-white rounded-2xl shadow-2xl border-4 border-primary flex items-center justify-center animate-bounce-slow">
             <MagnifyingGlassIcon class="w-16 h-16 md:w-24 md:h-24 text-primary" />
           </div>
         </div>
@@ -48,7 +48,7 @@
 
 <script setup>
   import BaseCTA from '@/components/common/BaseCTA.vue'
-  import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
+  import { Search as MagnifyingGlassIcon } from 'lucide-vue-next'
 
   defineOptions({
     name: 'NotFoundPage'

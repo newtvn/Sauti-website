@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="flex justify-between items-start">
       <div>
-        <h1 class="text-2xl font-bold text-gray-900" style="font-family: 'Roboto', sans-serif;">Team Members</h1>
+        <h1 class="text-2xl font-bold text-gray-900" style="font-family: var(--font-system);">Team Members</h1>
         <p class="text-gray-600 mt-1">Manage users and their roles</p>
       </div>
       <button
@@ -509,11 +509,11 @@ onMounted(() => {
 <style scoped>
 .stats-card {
   @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-system);
 }
 
 .btn-primary {
   @apply px-4 py-2 bg-[#8B4000] text-white rounded-lg hover:bg-[#6B3000] transition-colors;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-system);
 }
 </style>

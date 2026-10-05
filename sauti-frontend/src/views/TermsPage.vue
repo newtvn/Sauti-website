@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-neutral-white min-h-screen">
+  <div class="public-page reading-page bg-neutral-white min-h-screen">
     <!-- 1. Page Header -->
     <header class="page-header">
       <div class="container-custom">
@@ -14,10 +14,10 @@
     <div class="container-custom section-padding">
       <div class="max-w-4xl mx-auto section-rhythm">
         <!-- Content Card -->
-        <div class="bg-neutral-white p-6 md:p-16 rounded-[4rem] border-2 border-neutral-offwhite shadow-sm space-y-16">
+        <div class="bg-neutral-white p-6 md:p-16 rounded-2xl border-2 border-neutral-offwhite shadow-sm space-y-16">
 
           <!-- Terms in a Flash (Flash Pattern) -->
-          <section class="bg-secondary/5 p-8 md:p-10 rounded-[2.5rem] border-2 border-secondary/10">
+          <section class="bg-secondary/5 p-8 md:p-10 rounded-2xl border-2 border-secondary/10">
             <h2 class="campaign-header text-xl text-secondary mb-6 flex items-center gap-3">
               <ShieldCheckIcon class="w-6 h-6 text-secondary" />
               Terms in a Flash
@@ -93,7 +93,7 @@
               <span class="w-1.5 h-8 bg-secondary-light rounded-full"></span>
               4. How We Protect Your Privacy
             </h2>
-            <div class="bg-neutral-offwhite/30 p-10 rounded-[2.5rem] border-2 border-neutral-offwhite">
+            <div class="bg-neutral-offwhite/30 p-10 rounded-2xl border-2 border-neutral-offwhite">
               <p class="text-black font-bold text-lg leading-relaxed mb-8">
                 We are committed to maintaining the confidentiality of all information shared with us. However, we may
                 be required to share information in the following circumstances:
@@ -129,7 +129,7 @@
           <!-- Section 6 -->
           <section aria-labelledby="emergency-heading">
             <h2 id="emergency-heading" class="campaign-header text-3xl text-emergency mb-8">6. Emergency Situations</h2>
-            <div class="bg-emergency/5 p-10 rounded-[3rem] border-2 border-emergency/20 space-y-8">
+            <div class="bg-emergency/5 p-10 rounded-2xl border-2 border-emergency/20 space-y-8">
               <p class="text-black font-bold text-xl">In case of immediate danger, please:</p>
               <div class="grid gap-4">
                 <div v-for="step in emergencySteps" :key="step"
@@ -149,7 +149,7 @@
             <h2 id="contact-heading" class="campaign-header text-3xl text-secondary mb-8">7. Contact Information
             </h2>
             <div
-              class="bg-primary/5 p-10 rounded-[3rem] border-2 border-primary/20 grid grid-cols-1 md:grid-cols-2 gap-10">
+              class="bg-primary/5 p-10 rounded-2xl border-2 border-primary/20 grid grid-cols-1 md:grid-cols-2 gap-10">
               <div class="space-y-8">
                 <div class="flex items-center gap-6">
                   <div
@@ -201,14 +201,7 @@
 <script setup>
   import { computed } from 'vue'
   import BaseCTA from '@/components/common/BaseCTA.vue'
-  import {
-    CheckIcon,
-    EnvelopeIcon,
-    PhoneIcon,
-    MapPinIcon,
-    ArrowLeftIcon,
-    ShieldCheckIcon
-  } from '@heroicons/vue/24/outline'
+  import { Check as CheckIcon, Mail as EnvelopeIcon, Phone as PhoneIcon, MapPin as MapPinIcon, ArrowLeft as ArrowLeftIcon, ShieldCheck as ShieldCheckIcon } from 'lucide-vue-next'
 
   defineOptions({
     name: 'TermsPage'

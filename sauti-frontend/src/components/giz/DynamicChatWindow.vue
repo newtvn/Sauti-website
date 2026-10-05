@@ -278,25 +278,7 @@
     })
   );
 
-  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-  import {
-    faMaximize, faMicrophone, faMicrophoneSlash, faMinus, faXmark, faPaperPlane,
-    faThumbsUp, faThumbsDown, faArrowLeft, faExclamationTriangle, faCloudUploadAlt,
-    faTimes, faPhone, faExclamationCircle, faInfoCircle, faCheckCircle, faDownload,
-    faPlus, faBook, faComments, faFileAlt, faFileImage, faFileVideo, faFileAudio,
-    faForward, faMapMarkerAlt
-  } from '@fortawesome/free-solid-svg-icons';
-
-  // Register the icons
-  import { library } from '@fortawesome/fontawesome-svg-core';
-  library.add(
-    faMaximize, faMicrophone, faMicrophoneSlash, faMinus, faXmark, faPaperPlane,
-    faThumbsUp, faThumbsDown, faArrowLeft, faExclamationTriangle, faCloudUploadAlt,
-    faTimes, faPhone, faExclamationCircle, faInfoCircle, faCheckCircle, faDownload,
-    faPlus, faBook, faComments, faFileAlt, faFileImage, faFileVideo, faFileAudio,
-    faForward, faMapMarkerAlt
-  );
-
+  import FontAwesomeIcon from '@/components/common/SystemIcon.vue';
   // Props and emits
   const props = defineProps({
     minimized: Boolean

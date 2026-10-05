@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-neutral-white min-h-screen">
+  <div class="public-page bg-neutral-white min-h-screen">
     <!-- 1. Page Header -->
     <header class="page-header">
       <div class="container-custom">
@@ -15,7 +15,7 @@
     <div class="section-padding !pt-0">
       <div class="container-custom">
         <!-- Operations in a Flash (Flash Pattern) -->
-        <section class="bg-primary/5 p-8 md:p-12 rounded-[3rem] border-2 border-primary/10 mb-16 shadow-sm">
+        <section class="bg-primary/5 p-8 md:p-12 rounded-2xl border-2 border-primary/10 mb-16 shadow-sm">
           <h2 class="campaign-header text-xl text-primary mb-8 flex items-center gap-3">
             <ShieldCheckIcon class="w-6 h-6 text-primary" />
             Operations at a Glance
@@ -45,7 +45,7 @@
         <section aria-label="Process Overview" class="section-padding bg-neutral-white">
           <div class="container-custom">
             <div
-              class="relative bg-neutral-white rounded-[4rem] shadow-2xl border-2 border-primary overflow-hidden group max-w-6xl mx-auto">
+              class="relative bg-neutral-white rounded-2xl shadow-2xl border-2 border-primary overflow-hidden group max-w-6xl mx-auto">
               <img src="@/assets/helpline-center.png" alt="Sauti 116 Helpline Operations Center"
                 class="w-full h-[400px] md:h-[600px] object-cover transition-transform duration-700 group-hover:scale-105" />
               <!-- Brand Overlay -->
@@ -57,88 +57,18 @@
           </div>
         </section>
 
-        <!-- 3. Path to Resolution -->
-        <section aria-labelledby="path-heading" class="section-padding bg-primary/5">
-          <div class="container-custom">
-            <div class="text-center mb-20">
-              <h2 id="path-heading" class="campaign-header text-4xl text-secondary mb-6">{{ operationsPathTitle }}</h2>
-              <p class="text-xl text-black max-w-2xl mx-auto font-bold opacity-70">{{ operationsPathSubtitle }}</p>
-            </div>
-
-            <!-- Desktop Flow - Horizontal -->
-            <div class="hidden lg:block relative mb-32">
-              <!-- Animated Connecting Line -->
-              <div class="absolute top-10 left-0 right-0 h-1.5 bg-primary/10 rounded-full"
-                style="width: 75%; margin-left: 12.5%;"></div>
-
-              <div
-                class="absolute top-10 left-0 h-1.5 bg-gradient-to-r from-primary via-hotline via-secondary-light to-primary rounded-full progress-bar transition-all"
-                style="width: 75%; margin-left: 12.5%;"></div>
-
-              <div class="grid grid-cols-4 gap-4 relative">
-                <div v-for="(step, idx) in [
-                  { title: operationsStep1Title, text: operationsStep1Text, tag: operationsStep1Tag, colorToken: 'primary', icon: PhoneIcon },
-                  { title: operationsStep2Title, text: operationsStep2Text, tag: operationsStep2Tag, colorToken: 'hotline', icon: UserGroupIcon },
-                  { title: operationsStep3Title, text: operationsStep3Text, tag: operationsStep3Tag, colorToken: 'secondary-light', icon: DocumentTextIcon },
-                  { title: operationsStep4Title, text: operationsStep4Text, tag: operationsStep4Tag, colorToken: 'primary', icon: CheckBadgeIcon }
-                ]" :key="idx" class="flex flex-col items-center group">
-                  <div
-                    :class="['w-20 h-20 rounded-3xl flex items-center justify-center text-neutral-white font-bold text-3xl shadow-xl mb-12 relative z-10 transition-transform group-hover:scale-110', `bg-${step.colorToken}`]">
-                    {{ idx + 1 }}
-                  </div>
-                  <div class="card-base h-full group-hover:border-secondary">
-                    <div
-                      :class="['w-12 h-12 bg-neutral-white rounded-xl flex items-center justify-center mb-6 shadow-sm border-2', `border-${step.colorToken}/20 text-${step.colorToken}`]">
-                      <component :is="step.icon" class="w-7 h-7" />
-                    </div>
-                    <h4 class="campaign-header text-xl text-secondary mb-4">{{ step.title }}</h4>
-                    <p class="text-black/70 font-bold text-sm leading-relaxed mb-6">{{ step.text }}</p>
-                    <div
-                      :class="['pill text-[10px] font-bold uppercase tracking-widest', `bg-${step.colorToken}/10 text-${step.colorToken}`]">
-                      {{ step.tag }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mobile Flow - Vertical -->
-            <div class="lg:hidden space-y-6">
-              <div v-for="(step, idx) in [
-                { title: operationsStep1Title, text: operationsStep1Text, tag: operationsStep1Tag, colorToken: 'primary', icon: PhoneIcon },
-                { title: operationsStep2Title, text: operationsStep2Text, tag: operationsStep2Tag, colorToken: 'hotline', icon: UserGroupIcon },
-                { title: operationsStep3Title, text: operationsStep3Text, tag: operationsStep3Tag, colorToken: 'secondary-light', icon: DocumentTextIcon },
-                { title: operationsStep4Title, text: operationsStep4Text, tag: operationsStep4Tag, colorToken: 'primary', icon: CheckBadgeIcon }
-              ]" :key="idx" class="relative pl-12">
-                <div class="absolute left-4 top-10 bottom-0 w-1 bg-primary/10" v-if="idx < 3"></div>
-                <div
-                  :class="['absolute left-0 top-0 w-8 h-8 rounded-full flex items-center justify-center text-neutral-white font-bold text-sm z-10', `bg-${step.colorToken}`]">
-                  {{ idx + 1 }}
-                </div>
-                <div class="card-base">
-                  <div class="flex items-center gap-4 mb-4">
-                    <div
-                      :class="['w-10 h-10 bg-neutral-white rounded-xl flex items-center justify-center shadow-sm border', `text-${step.colorToken}`]">
-                      <component :is="step.icon" class="w-6 h-6" />
-                    </div>
-                    <h4 class="campaign-header text-xl text-secondary leading-none">{{ step.title }}</h4>
-                  </div>
-                  <p class="text-black/70 font-bold text-sm leading-relaxed mb-6">{{ step.text }}</p>
-                  <div
-                    :class="['pill inline-flex text-[10px] font-bold uppercase tracking-widest', `bg-${step.colorToken}/10 text-${step.colorToken}`]">
-                    {{ step.tag }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ResolutionJourney :title="operationsPathTitle" :subtitle="operationsPathSubtitle" :steps="[
+          { title: operationsStep1Title, text: operationsStep1Text, tag: operationsStep1Tag, icon: PhoneIcon },
+          { title: operationsStep2Title, text: operationsStep2Text, tag: operationsStep2Tag, icon: UserGroupIcon },
+          { title: operationsStep3Title, text: operationsStep3Text, tag: operationsStep3Tag, icon: DocumentTextIcon },
+          { title: operationsStep4Title, text: operationsStep4Text, tag: operationsStep4Tag, icon: CheckBadgeIcon }
+        ]" />
 
         <!-- 4. Key Metrics Banner -->
         <section aria-label="Key Metrics" class="section-padding bg-neutral-white">
           <div class="container-custom">
             <div
-              class="bg-secondary rounded-[4rem] p-12 md:p-20 text-neutral-white shadow-2xl relative overflow-hidden">
+              class="bg-secondary rounded-2xl p-12 md:p-20 text-neutral-white shadow-2xl relative overflow-hidden">
               <div class="absolute -left-20 -top-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
               <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 text-center">
                 <div class="space-y-4">
@@ -190,17 +120,11 @@
 </template>
 
 <script setup>
+import ResolutionJourney from '@/components/common/ResolutionJourney.vue'
   import { computed, onMounted } from 'vue'
   import { useSettingsStore } from '@/store/settings'
   import operationsImage from '@/assets/operations-case-flow.jpg'
-  import {
-    PhoneIcon,
-    UserGroupIcon,
-    DocumentTextIcon,
-    CheckBadgeIcon,
-    CheckIcon,
-    ShieldCheckIcon
-  } from '@heroicons/vue/24/outline'
+  import { Phone as PhoneIcon, Users as UserGroupIcon, FileText as DocumentTextIcon, BadgeCheck as CheckBadgeIcon, Check as CheckIcon, ShieldCheck as ShieldCheckIcon } from 'lucide-vue-next'
 
   defineOptions({
     name: 'OperationsPage'

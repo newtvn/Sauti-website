@@ -1,39 +1,9 @@
 <template>
-  <div class="bg-neutral-white min-h-screen">
-    <!-- 1. Hero / Header Section -->
-    <header class="relative overflow-hidden pt-24 pb-32 bg-secondary">
-      <img src="@/assets/community-protection.png" alt="Sauti 116 Child Protection in Community"
-        class="absolute inset-0 w-full h-full object-cover opacity-40" />
-      <div class="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/80"></div>
-      <div class="container-custom relative z-10 text-center">
-        <div class="max-w-4xl mx-auto">
-          <div
-            class="inline-flex items-center justify-center w-24 h-24 bg-primary rounded-[2.5rem] mb-12 shadow-2xl shadow-primary/30">
-            <HeartIcon class="w-12 h-12 text-neutral-white" />
-          </div>
-          <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight text-neutral-white tracking-tight">
-            Protecting Our <span class="text-primary">Children</span>
-          </h1>
-          <p class="text-xl md:text-2xl text-neutral-white/90 max-w-2xl mx-auto leading-relaxed mb-12 font-bold">
-            Your contribution powers the 116 Helpline, ensuring every child in Uganda has a safe voice and a protective
-            hand.
-          </p>
-          <div class="cta-group justify-center">
-            <BaseCTA href="#donate-options" variant="primary" class="!px-12 !py-6"
-              @click="scrollToSection('donate-options')">
-              Donate Now
-            </BaseCTA>
-            <BaseCTA href="/contact" variant="outline"
-              class="!px-12 !py-6 text-neutral-white border-neutral-white/20 hover:bg-neutral-white/10">
-              Learn More
-            </BaseCTA>
-          </div>
-        </div>
-      </div>
-    </header>
+  <div class="public-page bg-neutral-white min-h-screen">
+    <header class="page-header"><div class="container-custom donate-intro"><div><p class="section-label">Support Sauti 116</p><h1>Protecting Our <span>Children</span></h1><p class="page-header-subtitle">Your contribution powers the 116 Helpline, ensuring every child in Uganda has a safe voice and a protective hand.</p><div class="flex gap-4 flex-wrap mt-8"><BaseCTA href="#donate-options" variant="primary" @click="scrollToSection('donate-options')">Donate Now</BaseCTA><BaseCTA to="/contact" variant="outline">Learn More</BaseCTA></div></div><img src="@/assets/community-protection.png" alt="Sauti 116 child protection in the community" /></div></header>
 
     <!-- 2. Impact Statistics Overlay -->
-    <section class="relative -mt-16 lg:-mt-24 z-20">
+    <section class="relative py-8">
       <div class="container-custom">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           <div v-for="(stat, idx) in [
@@ -42,7 +12,7 @@
             { val: '116', label: 'Toll-Free Help', color: 'text-secondary-light' },
             { val: '15+', label: 'Years Of Impact', color: 'text-secondary-light' }
           ]" :key="idx"
-            class="bg-neutral-white p-8 rounded-[3rem] border-2 border-neutral-offwhite text-center shadow-2xl transition-all duration-500 hover:border-primary">
+            class="bg-neutral-white p-8 rounded-2xl border-2 border-neutral-offwhite text-center shadow-2xl transition-all duration-500 hover:border-primary">
             <div :class="['text-4xl md:text-5xl font-bold mb-2', stat.color]">{{ stat.val }}</div>
             <div class="campaign-header text-[10px] text-black/40">{{ stat.label }}</div>
           </div>
@@ -53,7 +23,7 @@
     <div class="section-padding !pt-0">
       <div class="container-custom">
         <!-- Giving in a Flash (Flash Pattern) -->
-        <section class="bg-primary/5 p-8 md:p-12 rounded-[3.5rem] border-2 border-primary/10 mb-16 shadow-sm">
+        <section class="bg-primary/5 p-8 md:p-12 rounded-2xl border-2 border-primary/10 mb-16 shadow-sm">
           <h2 class="campaign-header text-xl text-primary mb-6 flex items-center gap-3">
             <ShieldCheckIcon class="w-6 h-6 text-primary" />
             Giving in a Flash
@@ -118,7 +88,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
               <!-- Bank Card -->
-              <div class="bg-neutral-white p-10 md:p-16 rounded-[4rem] border-2 border-primary shadow-sm">
+              <div class="bg-neutral-white p-10 md:p-16 rounded-2xl border-2 border-primary shadow-sm">
                 <div class="flex items-center mb-12">
                   <div
                     class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-neutral-white shadow-xl mr-6">
@@ -146,7 +116,7 @@
               </div>
 
               <!-- Mobile Card -->
-              <div class="bg-neutral-white p-10 md:p-16 rounded-[4rem] border-2 border-hotline shadow-sm">
+              <div class="bg-neutral-white p-10 md:p-16 rounded-2xl border-2 border-hotline shadow-sm">
                 <div class="flex items-center mb-12">
                   <div
                     class="w-16 h-16 bg-hotline rounded-2xl flex items-center justify-center text-neutral-white shadow-xl mr-6">
@@ -185,7 +155,7 @@
         <section aria-labelledby="transparency-heading" class="section-padding bg-neutral-white">
           <div class="container-custom">
             <div
-              class="bg-secondary p-12 md:p-20 rounded-[4rem] text-neutral-white shadow-2xl relative overflow-hidden">
+              class="bg-secondary p-12 md:p-20 rounded-2xl text-neutral-white shadow-2xl relative overflow-hidden">
               <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-neutral-white/5 rounded-full blur-3xl"></div>
 
               <div class="relative z-10 flex flex-col md:flex-row items-start gap-12">
@@ -226,15 +196,7 @@
   import { onMounted } from 'vue'
   import { useSettingsStore } from '@/store/settings'
   import BaseCTA from '@/components/common/BaseCTA.vue'
-  import {
-    HeartIcon,
-    UserGroupIcon,
-    ShieldCheckIcon,
-    ShareIcon,
-    CreditCardIcon,
-    DevicePhoneMobileIcon,
-    PhoneIcon
-  } from '@heroicons/vue/24/outline'
+  import { Heart as HeartIcon, Users as UserGroupIcon, ShieldCheck as ShieldCheckIcon, Share2 as ShareIcon, CreditCard as CreditCardIcon, Smartphone as DevicePhoneMobileIcon, Phone as PhoneIcon } from 'lucide-vue-next'
 
   defineOptions({
     name: 'DonatePage'
@@ -260,3 +222,7 @@
     }
   })
 </script>
+
+<style scoped>
+.donate-intro{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center}.donate-intro img{width:100%;height:340px;object-fit:cover;border-radius:20px}.donate-intro h1{margin:.75rem 0 1.5rem}@media(max-width:760px){.donate-intro{grid-template-columns:1fr;gap:2rem}.donate-intro img{height:240px}}
+</style>

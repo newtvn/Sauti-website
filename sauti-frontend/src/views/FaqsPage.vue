@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-neutral-white min-h-screen">
+  <div class="public-page bg-neutral-white min-h-screen">
     <!-- 1. Page Header -->
     <header class="page-header !pb-0">
       <div class="container-custom">
@@ -18,7 +18,7 @@
         <!-- Left Sidebar (Support Info) -->
         <div class="lg:col-span-4 order-2 lg:order-1 space-y-10 lg:sticky lg:top-32">
           <!-- Hero Card -->
-          <div class="rounded-[3rem] bg-primary p-10 text-neutral-white relative overflow-hidden">
+          <div class="rounded-2xl bg-primary p-10 text-neutral-white relative overflow-hidden">
             <div class="relative z-10 text-center space-y-6">
               <div
                 class="w-20 h-20 mx-auto bg-neutral-white/10 rounded-2xl flex items-center justify-center border border-neutral-white/20">
@@ -32,7 +32,7 @@
           </div>
 
           <!-- Emergency Contact Card -->
-          <div class="rounded-[3rem] bg-emergency/5 p-10 space-y-6">
+          <div class="rounded-2xl bg-emergency/5 p-10 space-y-6">
             <h4 class="campaign-header text-2xl text-emergency">{{ faqsImmediateHelpTitle }}</h4>
             <p class="text-black font-bold leading-relaxed">{{ faqsImmediateHelpSubtitle }}</p>
             <BaseCTA :href="`tel:116`" variant="emergency" class="w-full justify-center !py-4 font-bold" external>
@@ -74,7 +74,7 @@
             <!-- FAQ List -->
             <div v-if="filteredFaqs.length" class="space-y-8">
               <div v-for="(faq, index) in filteredFaqs" :key="faq.id || index"
-                class="group bg-neutral-white rounded-[3rem] shadow-lg transition-all duration-500 overflow-hidden"
+                class="group bg-neutral-white rounded-2xl shadow-lg transition-all duration-500 overflow-hidden"
                 :class="{ 'shadow-2xl': openFaq === index }">
                 <button @click="toggleFaq(index)"
                   class="w-full text-left px-8 py-10 flex items-start gap-8 hover:bg-neutral-offwhite/30 transition-colors focus:outline-none"

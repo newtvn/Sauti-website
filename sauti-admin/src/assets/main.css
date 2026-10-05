@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+@import "./system-interface.css";
+@import "./system-typography.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-family: var(--font-system);
     @apply antialiased;
     color: #222222;
     background-color: #FFFFFF;
@@ -13,7 +14,7 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-family: var(--font-system);
     font-weight: 600;
     letter-spacing: -0.025em;
     color: #222222;
@@ -59,12 +60,12 @@
   }
   
   a {
-    color: #009EDB;
+    color: var(--ui-accent);
     text-decoration: underline;
   }
   
   a:hover {
-    color: #007BAA;
+    color: var(--ui-accent);
   }
   
   /* Remove underline from router-links styled as buttons and navigation links */
@@ -84,16 +85,16 @@
   /* Enhanced Button Styles */
   .btn {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-offset-2 transform hover:scale-105 active:scale-95;
-    font-family: 'Poppins', 'Inter', sans-serif;
+    font-family: var(--font-system);
   }
   
   .btn-primary {
     @apply btn text-white focus:ring-4 shadow-lg;
-    background-color: #009EDB;
+    background-color: var(--ui-accent);
     box-shadow: 0 4px 15px rgba(0, 158, 219, 0.25);
   }
   .btn-primary:hover {
-    background-color: #007BAA;
+    background-color: var(--ui-accent);
     box-shadow: 0 6px 20px rgba(0, 158, 219, 0.35);
   }
   .btn-primary:focus {
@@ -133,14 +134,14 @@
   
   .btn-outline {
     @apply btn border focus:ring-4 shadow-lg rounded-full;
-    border-color: #009EDB;
-    color: #009EDB;
+    border-color: var(--ui-accent);
+    color: var(--ui-accent);
     background: white;
   }
   .btn-outline:hover {
     background: #FFFFFF;
-    border-color: #007BAA;
-    color: #007BAA;
+    border-color: var(--ui-accent);
+    color: var(--ui-accent);
   }
   .btn-outline:focus {
     --tw-ring-color: rgba(0, 158, 219, 0.45);
@@ -173,14 +174,14 @@
     @apply w-full px-4 py-3 border-2 rounded-lg focus:ring-4 transition-all duration-300 font-medium;
     border-color: #DDDDDD;
     color: #222222;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-system);
     min-height: 44px;
     font-size: 14px;
     line-height: 1.5;
   }
   
   .form-input:focus {
-    border-color: #009EDB;
+    border-color: var(--ui-accent);
     --tw-ring-color: rgba(0, 158, 219, 0.45);
   }
   
@@ -194,7 +195,7 @@
   
   .form-label {
     @apply block text-sm font-semibold mb-2;
-    font-family: 'Poppins', 'Inter', sans-serif;
+    font-family: var(--font-system);
     color: #555555;
   }
   
@@ -202,7 +203,7 @@
     @apply w-full px-4 py-3 border-2 rounded-lg focus:ring-4 transition-all duration-300 font-medium;
     border-color: #DDDDDD;
     color: #222222;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-system);
     min-height: 44px;
     font-size: 14px;
     line-height: 1.5;
@@ -215,7 +216,7 @@
   }
   
   .form-select:focus {
-    border-color: #009EDB;
+    border-color: var(--ui-accent);
     --tw-ring-color: rgba(0, 158, 219, 0.45);
   }
   
@@ -228,26 +229,26 @@
   /* Enhanced Sidebar Styles */
   .sidebar-link {
     @apply flex items-center px-4 py-3 transition-all duration-300 rounded-xl mx-2 font-medium;
-    font-family: 'Poppins', 'Inter', sans-serif;
+    font-family: var(--font-system);
     color: #222222;
   }
   
   .sidebar-link:hover {
     background-color: #E6F7FF;
-    color: #009EDB;
+    color: var(--ui-accent);
     transform: scale(1.03);
   }
   
   .sidebar-link.active {
     @apply font-semibold shadow-sm;
-    background-color: #009EDB;
+    background-color: var(--ui-accent);
     color: #FFFFFF;
   }
   
   /* Enhanced Status Badges */
   .status-badge {
     @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300;
-    font-family: 'Poppins', 'Inter', sans-serif;
+    font-family: var(--font-system);
   }
   
   .status-published {
@@ -267,7 +268,7 @@
   .type-blog {
     @apply status-badge;
     background-color: rgba(0, 158, 219, 0.15);
-    color: #007BAA;
+    color: var(--ui-accent);
     border: 1px solid rgba(0, 158, 219, 0.3);
   }
   
@@ -308,13 +309,36 @@
   
   .stats-number {
     @apply text-3xl font-bold mb-2;
-    color: #009EDB;
-    font-family: 'Poppins', 'Inter', sans-serif;
+    color: var(--ui-accent);
+    font-family: var(--font-system);
   }
   
   .stats-label {
     @apply text-sm font-semibold uppercase tracking-wider;
     color: #555555;
-    font-family: 'Poppins', 'Inter', sans-serif;
+    font-family: var(--font-system);
   }
 }
+
+/* Native system typography shared with the public site. */
+body, #app, #app *, .Vue-Toastification__toast, .Vue-Toastification__toast *, input, textarea, button, select { font-family: var(--font-system) !important; }
+
+/* Consistent dashboard hierarchy, including editor and modal content. */
+#app { font-size:var(--text-body); line-height:1.5; }
+#app main h1 { font-size:clamp(1.75rem,3vw,2.5rem); font-weight:600; line-height:1.15; letter-spacing:-.035em; }
+#app main h2 { font-size:1.5rem; font-weight:600; line-height:1.25; letter-spacing:-.025em; }
+#app main h3 { font-size:1.125rem; font-weight:600; line-height:1.3; }
+#app .prose { font-size:1rem; line-height:1.65; }
+#app label { font-weight:500; }
+#app table { font-variant-numeric:tabular-nums; }
+
+/* macOS-inspired surfaces, restrained accent and transparent vector glyphs. */
+body,#app{background:var(--ui-background);color:var(--ui-label)}
+#app svg{background:transparent !important;stroke-width:1.75}
+#app :is(button,input,select,textarea){accent-color:var(--ui-accent)}
+#app :is(input,select,textarea){border-radius:10px;border-color:var(--ui-separator);font-size:.9375rem}
+#app :is(button,a,input,select,textarea):focus-visible{outline:3px solid var(--ui-focus);outline-offset:3px}
+#app :is(.shadow-xl,.shadow-2xl,.shadow-lg){box-shadow:var(--ui-shadow)}
+#app .bg-gray-50,#app .bg-gray-100{background:var(--ui-background)}
+#app .bg-primary-500,#app .bg-sauti-blue{background:var(--ui-accent)}
+#app .text-primary-500,#app .text-sauti-blue{color:var(--ui-accent)}

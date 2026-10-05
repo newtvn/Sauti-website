@@ -12,7 +12,7 @@
               <img :src="sautiLogo" alt="Sauti Logo" class="h-full w-full object-contain" />
             </div>
             <div>
-              <h1 class="text-xl font-bold" style="font-family: 'Roboto', sans-serif; color: #222222;">Sauti Admin</h1>
+              <h1 class="text-xl font-bold" style="font-family: var(--font-system); color: #222222;">Sauti Admin</h1>
               <p class="text-xs" style="color: #555555;">116 helpline CMS</p>
             </div>
           </div>
@@ -283,7 +283,7 @@
               </div>
             </div>
             <div class="ml-4">
-              <p class="text-sm font-bold" style="font-family: 'Poppins', sans-serif; color: #222222;">{{
+              <p class="text-sm font-bold" style="font-family: var(--font-system); color: #222222;">{{
                 authStore.userFullName }}</p>
               <p class="text-xs font-medium" style="color: #555555;">{{ authStore.user?.role }}</p>
             </div>
@@ -313,7 +313,7 @@
             style="color: #009EDB;">
             <Bars3Icon class="h-6 w-6" />
           </button>
-          <h1 class="text-lg font-bold" style="font-family: 'Roboto', sans-serif; color: #222222;">{{ pageTitle }}</h1>
+          <h1 class="text-lg font-bold" style="font-family: var(--font-system); color: #222222;">{{ pageTitle }}</h1>
           <div class="w-10"></div>
         </div>
       </div>

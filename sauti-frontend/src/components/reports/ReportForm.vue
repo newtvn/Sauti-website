@@ -1,20 +1,20 @@
 <template>
-  <div class="flex flex-col h-[600px] w-full bg-gradient-to-b from-white to-gray-50 rounded-[2rem] shadow-sm border border-gray-200 overflow-hidden font-sans relative">
+  <div class="report-chat flex flex-col h-[600px] w-full bg-gradient-to-b from-white to-gray-50 rounded-[2rem] shadow-sm border border-gray-200 overflow-hidden font-sans relative">
     
     <!-- Header -->
-    <div class="p-4 flex items-center justify-between sticky top-0 z-10">
+    <div class="chat-header p-4 flex items-center justify-between sticky top-0 z-10">
       <div class="flex items-center gap-3">
         <div>
            <h2 class="font-bold text-secondary text-2xl leading-tight">Sauti Assistant</h2>
         </div>
       </div>
-      <button @click="resetChat" class="text-gray-400 hover:text-secondary transition-colors" title="Restart">
+      <button @click="resetChat" class="text-gray-400 hover:text-secondary transition-colors" title="Restart" aria-label="Restart conversation">
         <RotateCcw class="w-5 h-5" />
       </button>
     </div>
 
     <!-- Chat Area -->
-    <div ref="chatContainer" class="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth">
+    <div ref="chatContainer" class="chat-transcript flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth">
       <div class="space-y-4 pb-4">
         
         <!-- Render Messages -->
@@ -24,13 +24,13 @@
           <div v-if="msg.sender === 'bot'" class="flex gap-3 items-end animate-fade-in-up">
              <div class="w-8 h-8 rounded-full bg-secondary flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">S</div>
              <div class="flex flex-col gap-2 max-w-[85%]">
-               <div class="bg-white p-4 rounded-2xl rounded-bl-none shadow-sm border border-gray-100 text-gray-700 text-sm leading-relaxed whitespace-pre-line" v-html="msg.text"></div>
+               <div class="assistant-message bg-white p-4 rounded-2xl rounded-bl-none shadow-sm border border-gray-100 text-gray-700 text-sm leading-relaxed whitespace-pre-line" v-html="msg.text"></div>
                
                <!-- Options -->
                <div v-if="msg.options && !msg.responded" class="flex flex-wrap gap-2 mt-1">
                  <button v-for="opt in msg.options" :key="opt.val" 
                    @click="handleOption(opt)"
-                   class="px-4 py-2 bg-white border border-gray-200 text-secondary text-sm font-bold rounded-xl hover:bg-secondary hover:text-white transition-all shadow-sm hover:shadow-md text-left">
+                   class="chat-option px-4 py-2 bg-white border border-gray-200 text-secondary text-sm font-bold rounded-xl hover:bg-secondary hover:text-white transition-all shadow-sm hover:shadow-md text-left">
                    {{ opt.label }}
                  </button>
                </div>
@@ -39,7 +39,7 @@
 
           <!-- User Message -->
           <div v-else class="flex justify-end animate-fade-in-up">
-             <div class="bg-[#006633] text-white p-4 rounded-2xl rounded-br-none shadow-md max-w-[85%] text-sm leading-relaxed">
+             <div class="user-message bg-[#006633] text-white p-4 rounded-2xl rounded-br-none shadow-md max-w-[85%] text-sm leading-relaxed">
                {{ msg.text }}
              </div>
           </div>
@@ -61,13 +61,13 @@
     </div>
 
     <!-- Input Area -->
-    <div class="p-4 bg-white border-t border-gray-100">
+    <div class="chat-composer p-4 bg-white border-t border-gray-100">
       <form @submit.prevent="handleSubmit" class="relative">
         <textarea 
           v-if="currentInputType === 'textarea'"
           v-model="userInput"
           :disabled="isTyping || isFinished || waitingForOption"
-          placeholder="Please describe what happened..."
+          placeholder="Please describe what happened..." aria-label="Describe what happened"
           class="w-full pl-5 pr-14 py-4 bg-gray-50 rounded-[1.5rem] border border-gray-200 focus:bg-white focus:border-secondary focus:ring-2 focus:ring-secondary/10 outline-none transition-all text-gray-800 text-sm resize-none h-32"
           ref="inputRef"
         ></textarea>
@@ -77,7 +77,7 @@
           v-model="userInput"
           :type="currentInputType === 'number' ? 'tel' : 'text'"
           :disabled="isTyping || isFinished || waitingForOption"
-          :placeholder="inputPlaceholder"
+          :placeholder="inputPlaceholder" aria-label="Your answer"
           class="w-full pl-5 pr-14 py-4 bg-gray-50 rounded-full border border-gray-200 focus:bg-white focus:border-secondary focus:ring-2 focus:ring-secondary/10 outline-none transition-all text-gray-800 text-sm"
           ref="inputRef"
          autofocus
@@ -85,10 +85,10 @@
 
         <button 
           v-if="!isFinished && !waitingForOption"
-          type="submit" 
+          type="submit" aria-label="Send message"
           :disabled="!userInput.trim()"
           class="absolute right-2 bottom-2 w-10 h-10 bg-secondary rounded-full flex items-center justify-center text-white shadow-lg hover:bg-emerald-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
-          <Send class="w-5 h-5" />
+          <ArrowUp class="w-5 h-5" />
         </button>
       </form>
       <div v-if="validationError" class="text-red-500 text-xs font-bold mt-2 ml-2 flex items-center gap-1">
@@ -118,7 +118,7 @@
 <script setup>
 import { ref, nextTick, onMounted } from 'vue'
 import { api } from '@/utils/axios'
-import { RotateCcw, Send, CheckCircle, AlertCircle } from 'lucide-vue-next'
+import { RotateCcw, ArrowUp, CheckCircle, AlertCircle } from 'lucide-vue-next'
 
 const messages = ref([])
 const isTyping = ref(false)
@@ -437,16 +437,30 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.animate-fade-in-up {
-  animation: fadeInUp 0.4s ease-out forwards;
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+.report-chat { height: min(720px, 78svh); min-height: 480px; background: #fcfcfa; border: 1px solid #e4e6e1; border-radius: 24px; box-shadow: none; }
+.chat-header { background: #fcfcfa; padding: 20px 24px; border-bottom: 1px solid #eceee8; }
+.chat-header h2 { font-size: 18px; font-weight: 600; letter-spacing: -.025em; color: #20231f; margin: 0; }
+.chat-header button { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; color: #6d726b; }
+.chat-header button:hover { background: #eeefeb; }
+.chat-transcript { padding: 28px 24px; scrollbar-width: thin; scrollbar-color: #d4d8cf transparent; }
+.chat-transcript > div { max-width: 680px; margin: auto; }
+.chat-transcript .items-end { align-items: flex-start; }
+.chat-transcript .w-8 { background: #252923; margin-top: 4px; }
+.assistant-message { background: transparent; border: 0; box-shadow: none; padding: 4px 0 12px; font-size: 15px; line-height: 1.75; color: #272b25; border-radius: 0; }
+.user-message { background: #eeefeb; color: #272b25; border-radius: 22px; box-shadow: none; font-size: 15px; padding: 12px 18px; }
+.chat-option { min-height: 44px; border-radius: 100px; font-size: 13px; font-weight: 500; color: #363c32; border-color: #dfe3d9; box-shadow: none; padding: 10px 16px; }
+.chat-option:hover { background: #eceee7; color: #20231f; box-shadow: none; }
+.chat-composer { background: #fcfcfa; border: 0; padding: 16px 24px 24px; }
+.chat-composer form { border-radius: 26px; background: #eeefeb; }
+.chat-composer :is(input, textarea) { background: transparent; border: 1px solid transparent; border-radius: 26px; min-height: 56px; font-size: 15px; padding-left: 20px; color: #272b25; }
+.chat-composer :is(input, textarea):focus { background: transparent; border-color: #afb8a8; box-shadow: none; }
+.chat-composer :is(input, textarea):disabled { opacity: .65; }
+.chat-composer button { background: #252923; color: #fafbf8; box-shadow: none; }
+.chat-composer button:hover { background: #444d3c; }
+.chat-composer button:disabled { background: #d7dad2; color: #757b70; opacity: 1; }
+.report-chat button:focus-visible { outline: 2px solid #006837; outline-offset: 3px; }
+.animate-fade-in-up { animation: fadeInUp .25s ease-out both; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 640px) { .chat-transcript { padding: 20px 16px; } .chat-header { padding: 16px; } .chat-composer { padding: 12px 16px 16px; } .report-chat { min-height: 480px; border-radius: 20px; } }
+@media (prefers-reduced-motion: reduce) { .animate-fade-in-up { animation: none; } }
 </style>

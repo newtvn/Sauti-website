@@ -17,32 +17,7 @@
 
 <script setup>
   import { defineProps, computed } from 'vue';
-  import {
-    PhoneIcon,
-    UserGroupIcon,
-    MegaphoneIcon,
-    ArrowPathIcon,
-    GlobeAltIcon,
-    ShieldCheckIcon,
-    HandRaisedIcon,
-    BookOpenIcon,
-    VideoCameraIcon,
-    QuestionMarkCircleIcon,
-    BuildingOfficeIcon,
-    ShareIcon,
-    WrenchScrewdriverIcon,
-    ClockIcon,
-    DocumentTextIcon,
-    FolderOpenIcon,
-    Squares2X2Icon,
-    PencilSquareIcon,
-    ShieldExclamationIcon,
-    PhotoIcon,
-    ArrowRightOnRectangleIcon,
-    PlusCircleIcon,
-    Bars3Icon,
-    XMarkIcon,
-  } from '@heroicons/vue/24/outline';
+  import { Phone as PhoneIcon, Users as UserGroupIcon, Megaphone as MegaphoneIcon, RefreshCw as ArrowPathIcon, Globe as GlobeAltIcon, ShieldCheck as ShieldCheckIcon, Hand as HandRaisedIcon, BookOpen as BookOpenIcon, Video as VideoCameraIcon, CircleHelp as QuestionMarkCircleIcon, Building2 as BuildingOfficeIcon, Share2 as ShareIcon, Wrench as WrenchScrewdriverIcon, Clock as ClockIcon, FileText as DocumentTextIcon, FolderOpen as FolderOpenIcon, LayoutGrid as Squares2X2Icon, SquarePen as PencilSquareIcon, ShieldAlert as ShieldExclamationIcon, Image as PhotoIcon, LogOut as ArrowRightOnRectangleIcon, CirclePlus as PlusCircleIcon, Menu as Bars3Icon, X as XMarkIcon } from 'lucide-vue-next';
 
   defineOptions({
     name: 'AppServiceCard'

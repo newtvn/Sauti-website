@@ -2,7 +2,7 @@
   <div class="mb-8">
     <div class="flex justify-between items-start">
       <div>
-        <h1 class="text-2xl font-bold text-gray-900" style="font-family: 'Roboto', sans-serif;">
+        <h1 class="text-2xl font-bold text-gray-900" style="font-family: var(--font-system);">
           {{ title }}
         </h1>
         <p class="text-gray-600 mt-1">{{ description }}</p>
