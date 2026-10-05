@@ -4,69 +4,9 @@
     <!-- A. Hero Section -->
     <!-- A. Hero Section (Centralized Floating Grid) -->
     <!-- A. Hero Section (Grid Moodboard Layout) -->
-    <section class="relative bg-[#F9FAFB] min-h-screen flex flex-col items-center justify-center pt-32 pb-16 px-4 md:pt-48 md:px-8 overflow-hidden">
-      <!-- Grid Container -->
-      <div class="grid grid-cols-1 md:grid-cols-[1fr_4fr_1fr] gap-4 w-full max-w-7xl aspect-auto md:aspect-[16/10]">
-        
-        <!-- Left Side Column -->
-        <div class="hidden md:grid grid-rows-3 gap-4">
-           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative group">
-              <img src="@/assets/children-uganda-1.jpeg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Community" />
-           </div>
-           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative group">
-              <img src="@/assets/helpline-center.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Helpline" />
-           </div>
-           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative group">
-              <img src="@/assets/hero-family.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Family" />
-           </div>
-        </div>
-
-        <!-- Center Wrapper -->
-        <div class="relative flex flex-col items-center justify-center">
-            <!-- Center Grid (Background for Circle) -->
-            <div class="grid grid-cols-2 grid-rows-2 gap-4 w-full h-full">
-               <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative group">
-                 <img src="@/assets/sauti-aboutpage.webp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Team" />
-               </div>
-               <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative group">
-                 <img src="@/assets/sauti_happy_students.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Happy Students" />
-               </div>
-               <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative group">
-                 <img src="@/assets/helpline-action.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Action" />
-               </div>
-               <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative group">
-                 <img src="@/assets/community-protection.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Protection" />
-               </div>
-            </div>
-
-            <!-- The Circle (Overlay) -->
-            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div class="w-64 h-64 md:w-80 md:h-80 bg-white rounded-full shadow-2xl flex flex-col items-center justify-center text-center p-8 z-10 border-[8px] border-[#F9FAFB]">
-                  <span class="inline-block px-3 py-1 bg-gray-100 rounded-full text-[10px] font-black uppercase tracking-widest text-[#005f99] mb-4">Who we are</span>
-                  <h1 class="text-3xl md:text-4xl font-black text-[#0f172a] leading-tight mb-2">
-                    About<br/><span class="text-[#005f99]">Sauti 116</span>
-                  </h1>
-                  <p class="text-sm font-bold text-gray-400">From Uganda, For Children.</p>
-              </div>
-            </div>
-        </div>
-
-        <!-- Right Side Column -->
-        <div class="hidden md:grid grid-rows-3 gap-4">
-           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative group">
-              <img src="@/assets/diverse_helpline_operations.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Operations" />
-           </div>
-           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative group">
-               <img src="@/assets/inclusive_community_protection.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Inclusive" />
-           </div>
-           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative group">
-              <div class="w-full h-full bg-blue-50 flex items-center justify-center p-4">
-                 <p class="text-center text-[#005f99] font-black text-sm">Every Child Matters</p>
-              </div>
-           </div>
-        </div>
-
-      </div>
+    <section class="about-community page-width">
+      <div class="section-heading"><div><p class="section-label">Who we are</p><h1>About <span>Sauti 116</span></h1><p>From Uganda, For Children.</p></div><span class="about-promise">Every Child Matters</span></div>
+      <div class="about-photo-grid"><img src="@/assets/sauti-aboutpage.webp" alt="Sauti team" fetchpriority="high" /><img src="@/assets/sauti_happy_students.png" alt="Children together at school" /><img src="@/assets/children-uganda-1.jpeg" alt="Children in the Ugandan community" /><img src="@/assets/helpline-center.png" alt="Sauti helpline center" loading="lazy" /></div>
     </section>
 
 

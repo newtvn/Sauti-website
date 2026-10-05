@@ -33,7 +33,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
         <!-- Left Column (Primary - 8 cols) -->
-        <main class="lg:col-span-8 space-y-8 flex flex-col">
+        <div class="lg:col-span-8 space-y-8 flex flex-col">
           
           <!-- Report Form Component (Prioritized on Mobile) -->
           <section aria-label="Reporting Interface" class="order-1">
@@ -62,7 +62,7 @@
           <!-- Confidentiality Notice -->
 
 
-        </main>
+        </div>
 
         <!-- Right Column (Sidebar - 4 cols) -->
         <aside class="lg:col-span-4 space-y-6">

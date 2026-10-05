@@ -14,7 +14,7 @@ export const useVideosStore = defineStore('videos', () => {
     error.value = null
     try {
       const response = await api.get('/videos/', { params })
-      videos.value = response.data.results || []
+      videos.value = Array.isArray(response.data) ? response.data : (Array.isArray(response.data?.results) ? response.data.results : [])
     } catch (err) {
       error.value = err.message || 'Failed to fetch videos'
       console.error('Failed to fetch videos:', err)

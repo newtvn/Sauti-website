@@ -1,6 +1,6 @@
 <template>
   <article
-    class="group bg-neutral-white p-4 rounded-[2rem] shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-primary/10">
+    class="publication-card group bg-neutral-white p-4 rounded-[2rem] shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-primary/10">
     <router-link :to="`/blogs/${post.slug}`" class="block">
       <!-- Featured Image -->
       <div class="relative bg-neutral-offwhite rounded-2xl overflow-hidden aspect-video cursor-pointer">

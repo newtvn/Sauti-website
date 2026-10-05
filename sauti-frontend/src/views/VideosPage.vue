@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-neutral-white min-h-screen">
+  <div class="media-page videospage bg-neutral-white min-h-screen">
     <!-- 1. Page Header -->
     <header class="page-header !pb-0">
       <div class="container-custom">
@@ -50,18 +50,18 @@
           <div class="spinner"></div>
         </div>
 
-        <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div v-else-if="filteredVideos.length" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
           <article v-for="video in filteredVideos" :key="video.id"
             class="card-base group overflow-hidden !p-4 transition-all duration-500 hover:shadow-2xl">
             <!-- Thumbnail Wrapper -->
-            <div class="relative rounded-[1.5rem] overflow-hidden aspect-video bg-neutral-offwhite cursor-pointer"
-              @click="openVideo(video)">
+            <div class="video-thumbnail relative rounded-[1.5rem] overflow-hidden aspect-video bg-neutral-offwhite cursor-pointer"
+              role="button" tabindex="0" :aria-label="`Play ${video.title}`" @keydown.enter="openVideo(video)" @keydown.space.prevent="openVideo(video)" @click="openVideo(video)">
               <img :src="video.thumbnail" :alt="video.title"
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 loading="lazy" @error="useThumbPlaceholder($event)" />
               <div
                 class="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/40 transition-colors duration-500 flex items-center justify-center">
-                <div class="transform scale-0 group-hover:scale-100 transition-transform duration-500">
+                <div class="transform scale-100 group-hover:scale-100 transition-transform duration-500">
                   <div class="bg-neutral-white rounded-full p-6 shadow-2xl">
                     <Play class="w-10 h-10 text-primary" />
                   </div>
@@ -97,6 +97,7 @@
             </div>
           </article>
         </div>
+        <div v-if="!loading && !filteredVideos.length" class="content-status"><p>{{ videosStore.error ? 'Videos are temporarily unavailable. Please try again.' : 'No videos match your search.' }}</p><button class="text-link" @click="query = ''; activeChip = 'All'; fetchVideos()">{{ videosStore.error ? 'Try again' : 'Clear filters' }}</button></div>
       </section>
     </div>
 
@@ -107,6 +108,7 @@
 
 <script setup>
   import { ref, computed, onMounted } from 'vue'
+  import localThumbnail from '@/assets/helpline-action.png'
   import { useVideosStore } from '@/store/videos'
   import { useSettingsStore } from '@/store/settings'
   import VideoPlayerModal from '@/components/videos/VideoPlayerModal.vue'
@@ -157,7 +159,7 @@
       videos.value = videosStore.videos.map(video => ({
         id: video.id,
         title: video.title,
-        thumbnail: video.thumbnail || video.youtube_thumbnail_url || 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1200&auto=format&fit=crop',
+        thumbnail: video.thumbnail || video.youtube_thumbnail_url || localThumbnail,
         youtube_url: video.youtube_url,
         video_file: video.video_file,
         video_type: video.video_type || 'YOUTUBE',
@@ -165,7 +167,7 @@
         author_name: video.author_name || 'Sauti Uganda',
         category: video.category,
         published_at: video.published_at,
-        duration: video.duration || '5:00'
+        duration: video.duration || ''
       }))
     } catch (error) {
       console.error('Failed to fetch videos:', error)
@@ -176,7 +178,7 @@
 
   const setChip = (chip) => activeChip.value = chip
   const applySearch = () => { }
-  const useThumbPlaceholder = (e) => e.target.src = 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=640&auto=format&fit=crop'
+  const useThumbPlaceholder = (e) => { e.target.onerror = null; e.target.src = localThumbnail }
 
   const openVideo = (video) => {
     selectedVideo.value = video

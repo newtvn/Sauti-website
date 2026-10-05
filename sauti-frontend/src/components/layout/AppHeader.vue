@@ -2,21 +2,22 @@
   <header
     class="editorial-header relative z-50 transition-all duration-300">
     <!-- Skip link handled in App.vue for better first-element accessibility -->
-    <nav class="w-full px-8 lg:px-12" aria-label="Main Navigation">
+    <nav class="w-full px-8 xl:px-12" aria-label="Main Navigation">
       <div class="flex items-center justify-between h-[80px]">
         <!-- Logo - Text Only at Extreme Left -->
         <router-link to="/" class="flex items-center group no-underline shrink-0">
-          <h1 class="text-2xl tracking-tight text-neutral-black group-hover:text-primary transition-colors duration-300 m-0 font-bold">
+          <span class="brand-wordmark text-2xl tracking-tight text-neutral-black group-hover:text-primary transition-colors duration-300 m-0 font-bold">
             SAUTI 116
-          </h1>
+          </span>
         </router-link>
 
         <!-- Centered Desktop Navigation -->
-        <div class="hidden lg:flex flex-1 items-center justify-center">
+        <div class="hidden xl:flex flex-1 items-center justify-center">
           <div class="flex items-center gap-5">
             <router-link v-for="link in [
               { to: '/', label: 'Home' },
               { to: '/about', label: 'Who We Are' },
+              { to: '/operations', label: 'Services' },
               { to: '/videos', label: 'Videos' },
               { to: '/blogs', label: 'Updates' },
               { to: '/resources', label: 'Resources' },
@@ -30,8 +31,12 @@
           </div>
         </div>
 
+        <details class="site-explore hidden xl:block">
+          <summary>More</summary><div @click="closeExplore"><router-link to="/news">News</router-link><router-link to="/reports">Reports & Insights</router-link><router-link to="/partners">Our Partners</router-link><router-link to="/donate">Donate</router-link></div>
+        </details>
+
         <!-- Right Actions -->
-        <div class="hidden lg:flex items-center gap-3 shrink-0">
+        <div class="hidden xl:flex items-center gap-3 shrink-0">
           <!-- Call Button -->
           <BaseCTA :href="`tel:${settings.hotline_number || '116'}`" variant="emergency" external
             class="!rounded-full !px-6 !py-2.5 shadow-lg hover:shadow-xl gap-2 !border-0 flex items-center group"
@@ -48,7 +53,7 @@
         </div>
 
         <!-- Mobile Actions Group -->
-        <div class="lg:hidden flex items-center gap-2 relative z-20">
+        <div class="xl:hidden flex items-center gap-2 relative z-20">
           <!-- Compact Mobile Call Prompt (Removed per request) -->
           <!-- <div class="flex items-center gap-1.5 mr-2" aria-label="Call Emergency Helpline 116">
             <Phone class="w-5 h-5 text-[#ed1c24]" stroke-width="2.5" />
@@ -70,7 +75,7 @@
       enter-to-class="opacity-100 translate-y-0" leave-active-class="transition duration-200 ease-in"
       leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-4">
       <div v-if="mobileMenuOpen"
-        class="lg:hidden absolute inset-x-0 top-full h-[calc(100vh-80px)] bg-white/98 backdrop-blur-3xl border-t border-gray-100 shadow-2xl overflow-y-auto">
+        class="xl:hidden absolute inset-x-0 top-full h-[calc(100vh-80px)] bg-white/98 backdrop-blur-3xl border-t border-gray-100 shadow-2xl overflow-y-auto">
           <div class="grid gap-2 mb-2 border-b border-gray-100 pb-2">
             <!-- Call Link -->
             <a :href="`tel:${settings.hotline_number || '116'}`" 
@@ -96,11 +101,16 @@
             <router-link v-for="link in [
               { to: '/', label: 'Home' },
               { to: '/about', label: 'Who We Are' },
+              { to: '/operations', label: 'Services' },
               { to: '/videos', label: 'Videos' },
               { to: '/blogs', label: 'Updates' },
               { to: '/resources', label: 'Resources' },
               { to: '/faqs', label: 'FAQs' },
-              { to: '/contact', label: 'Contact Us' }
+              { to: '/contact', label: 'Contact Us' },
+              { to: '/news', label: 'News' },
+              { to: '/reports', label: 'Reports & Insights' },
+              { to: '/partners', label: 'Our Partners' },
+              { to: '/donate', label: 'Donate' }
             ]" :key="link.to" :to="link.to"
               class="text-lg font-bold text-secondary-light py-4 px-4 rounded-xl transition-all flex items-center justify-center group hover:bg-gray-50 active:bg-gray-100 text-center"
               active-class="bg-blue-50 text-primary !font-black" @click="mobileMenuOpen = false">
@@ -128,6 +138,7 @@
 
   const settingsStore = useSettingsStore()
   const mobileMenuOpen = ref(false)
+  const closeExplore = (event) => { event.currentTarget.closest('details').open = false }
 
   const settings = computed(() => settingsStore.settings)
   const orgProfile = computed(() => settingsStore.orgProfile)

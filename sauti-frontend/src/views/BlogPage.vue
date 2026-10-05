@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-neutral-white min-h-screen">
+  <div class="media-page blogpage bg-neutral-white min-h-screen">
     <!-- 1. Page Header -->
     <header class="page-header !pb-0">
       <div class="container-custom">
@@ -47,7 +47,7 @@
       <AppLoader v-if="loading" :message="blogLoading" />
 
       <div v-else-if="posts.length" class="space-y-16">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
           <BlogCard v-for="post in posts" :key="post.id" :post="post" />
         </div>
 

@@ -11,13 +11,13 @@
             </p>
           </div>
           <div class="flex gap-4">
-             <a href="https://facebook.com/Sauti116Helpline" target="_blank" class="w-12 h-12 rounded-full border border-neutral-white/20 flex items-center justify-center hover:bg-neutral-white hover:text-primary transition-all">
+             <a aria-label="Sauti on Facebook" href="https://facebook.com/Sauti116Helpline" target="_blank" class="w-12 h-12 rounded-full border border-neutral-white/20 flex items-center justify-center hover:bg-neutral-white hover:text-primary transition-all">
                 <Facebook class="w-5 h-5" />
              </a>
-             <a href="https://x.com/sauti116" target="_blank" class="w-12 h-12 rounded-full border border-neutral-white/20 flex items-center justify-center hover:bg-neutral-white hover:text-primary transition-all">
+             <a aria-label="Sauti on X" href="https://x.com/sauti116" target="_blank" class="w-12 h-12 rounded-full border border-neutral-white/20 flex items-center justify-center hover:bg-neutral-white hover:text-primary transition-all">
                 <Twitter class="w-5 h-5" />
              </a>
-             <a href="https://wa.me/256743889999" target="_blank" class="w-12 h-12 rounded-full border border-neutral-white/20 flex items-center justify-center hover:bg-neutral-white hover:text-primary transition-all">
+             <a aria-label="Contact Sauti on WhatsApp" href="https://wa.me/256743889999" target="_blank" class="w-12 h-12 rounded-full border border-neutral-white/20 flex items-center justify-center hover:bg-neutral-white hover:text-primary transition-all">
                 <MessageCircle class="w-5 h-5" />
              </a>
           </div>
@@ -43,6 +43,7 @@
             <li><router-link to="/faqs" class="hover:text-secondary-light transition-colors">FAQs</router-link></li>
             <li><router-link to="/contact" class="hover:text-secondary-light transition-colors">Contact Us</router-link></li>
             <li><router-link to="/privacy" class="hover:text-secondary-light transition-colors">Privacy Policy</router-link></li>
+            <li><router-link to="/accessibility" class="hover:text-secondary-light transition-colors">Accessibility</router-link></li>
             <li><router-link to="/terms" class="hover:text-secondary-light transition-colors">Terms of Service</router-link></li>
           </ul>
         </div>

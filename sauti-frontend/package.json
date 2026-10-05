@@ -5,6 +5,7 @@
   "description": "Sauti 116 helpline - Vue 3 Frontend",
   "scripts": {
     "dev": "vite",
+    "test": "node --test tests/*.test.mjs",
     "build": "vite build --mode production",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",

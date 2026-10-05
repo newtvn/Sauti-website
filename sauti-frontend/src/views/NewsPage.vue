@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-neutral-white min-h-screen">
+  <div class="media-page newspage bg-neutral-white min-h-screen">
     <!-- 1. Page Header -->
     <header class="page-header">
       <div class="container-custom">
@@ -52,7 +52,7 @@
         <AppLoader v-if="loading" message="Locating official updates..." />
 
         <div v-else-if="posts.length" class="space-y-24">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">
             <BlogCard v-for="post in posts" :key="post.id" :post="post" />
           </div>
 
