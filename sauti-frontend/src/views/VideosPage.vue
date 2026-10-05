@@ -1,5 +1,5 @@
 <template>
-  <div class="media-page videospage bg-neutral-white min-h-screen">
+  <div class="public-page media-page videospage bg-neutral-white min-h-screen">
     <!-- 1. Page Header -->
     <header class="page-header !pb-0">
       <div class="container-custom">
@@ -13,7 +13,7 @@
       <!-- 2. Search & Filter System -->
       <section aria-labelledby="filters-heading">
         <h2 class="campaign-header text-3xl text-secondary mb-12">Search Official Media</h2>
-        <div class="bg-neutral-offwhite rounded-[3rem] p-8 md:p-12 shadow-none max-w-6xl mx-auto">
+        <div class="bg-neutral-offwhite rounded-2xl p-8 md:p-12 shadow-none max-w-6xl mx-auto">
           <div class="flex flex-col md:flex-row items-center gap-8">
             <div
               class="flex-1 w-full bg-neutral-white shadow-sm border-none rounded-2xl p-2 flex items-center gap-4 group focus-within:shadow-md transition-all">
@@ -52,7 +52,7 @@
 
         <div v-else-if="filteredVideos.length" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
           <article v-for="video in filteredVideos" :key="video.id"
-            class="card-base group overflow-hidden !p-4 transition-all duration-500 hover:shadow-2xl">
+            class="card-base group overflow-hidden !p-4 transition-all duration-500 hover:shadow-sm">
             <!-- Thumbnail Wrapper -->
             <div class="video-thumbnail relative rounded-[1.5rem] overflow-hidden aspect-video bg-neutral-offwhite cursor-pointer"
               role="button" tabindex="0" :aria-label="`Play ${video.title}`" @keydown.enter="openVideo(video)" @keydown.space.prevent="openVideo(video)" @click="openVideo(video)">

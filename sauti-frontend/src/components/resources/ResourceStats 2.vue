@@ -36,6 +36,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScal
 import { Doughnut, Bar } from 'vue-chartjs'
 import { api } from '@/utils/axios'
 
+ChartJS.defaults.font.family = getComputedStyle(document.documentElement).getPropertyValue('--font-system').trim()
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 const loading = ref(true)

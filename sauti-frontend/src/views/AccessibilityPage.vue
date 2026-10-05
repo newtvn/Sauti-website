@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-neutral-white min-h-screen">
+  <div class="public-page reading-page bg-neutral-white min-h-screen">
     <!-- 1. Page Header -->
     <header class="page-header">
       <div class="container-custom">
@@ -14,10 +14,10 @@
     <div class="container-custom section-padding">
       <div class="max-w-4xl mx-auto section-rhythm">
         <!-- Content Card -->
-        <div class="bg-neutral-white p-6 md:p-16 rounded-[4rem] border-2 border-neutral-offwhite shadow-sm space-y-16">
+        <div class="bg-neutral-white p-6 md:p-16 rounded-2xl border-2 border-neutral-offwhite shadow-sm space-y-16">
 
           <!-- Accessibility in a Flash (Flash Pattern) -->
-          <section class="bg-secondary/5 p-8 md:p-10 rounded-[2.5rem] border-2 border-secondary/10">
+          <section class="bg-secondary/5 p-8 md:p-10 rounded-2xl border-2 border-secondary/10">
             <h2 class="campaign-header text-xl text-secondary mb-6 flex items-center gap-3">
               <ShieldCheckIcon class="w-6 h-6 text-secondary" />
               Accessibility in a Flash
@@ -78,7 +78,7 @@
               <span class="w-1.5 h-8 bg-secondary-light rounded-full"></span>
               3. Alternative Communication Paths
             </h2>
-            <div class="bg-neutral-offwhite/30 p-10 rounded-[2.5rem] border-2 border-neutral-offwhite space-y-6">
+            <div class="bg-neutral-offwhite/30 p-10 rounded-2xl border-2 border-neutral-offwhite space-y-6">
               <div v-for="method in helplineMethods" :key="method" class="flex items-start gap-6">
                 <div
                   class="w-10 h-10 rounded-xl bg-secondary-light/10 flex-shrink-0 flex items-center justify-center text-secondary-light mt-1">
@@ -95,7 +95,7 @@
               <span class="w-1.5 h-8 bg-primary rounded-full"></span>
               Standards Compliance
             </h2>
-            <div class="bg-neutral-white border-2 border-primary p-10 rounded-[3rem] shadow-sm">
+            <div class="bg-neutral-white border-2 border-primary p-10 rounded-2xl shadow-sm">
               <p class="text-black font-bold text-lg leading-relaxed mb-10">
                 We strictly aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standards.
               </p>
@@ -117,7 +117,7 @@
               our accessibility coordinator.
             </p>
             <div
-              class="bg-primary/5 p-10 rounded-[3rem] border-2 border-primary/20 grid grid-cols-1 md:grid-cols-2 gap-10">
+              class="bg-primary/5 p-10 rounded-2xl border-2 border-primary/20 grid grid-cols-1 md:grid-cols-2 gap-10">
               <div class="space-y-8">
                 <div class="flex items-center gap-6">
                   <div
@@ -170,15 +170,7 @@
 <script setup>
   import { computed } from 'vue'
   import BaseCTA from '@/components/common/BaseCTA.vue'
-  import {
-    CheckIcon,
-    CheckCircleIcon,
-    EnvelopeIcon,
-    PhoneIcon,
-    MapPinIcon,
-    ArrowLeftIcon,
-    ShieldCheckIcon
-  } from '@heroicons/vue/24/outline'
+  import { Check as CheckIcon, CircleCheck as CheckCircleIcon, Mail as EnvelopeIcon, Phone as PhoneIcon, MapPin as MapPinIcon, ArrowLeft as ArrowLeftIcon, ShieldCheck as ShieldCheckIcon } from 'lucide-vue-next'
 
   defineOptions({
     name: 'AccessibilityPage'

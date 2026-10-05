@@ -5,7 +5,7 @@
         <div class="mx-auto h-24 w-24 flex items-center justify-center">
           <img :src="sautiLogo" alt="Sauti Logo" class="h-full w-full object-contain" />
         </div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900" style="font-family: 'Roboto', sans-serif !important;">
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900" style="font-family: var(--font-system);">
           Admin Dashboard
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">

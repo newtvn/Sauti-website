@@ -38,7 +38,7 @@
 <script setup>
 import { computed } from 'vue'
 import BaseCTA from '@/components/common/BaseCTA.vue'
-import { PhoneIcon, AppWindowIcon } from '@heroicons/vue/24/outline'
+import { Phone as PhoneIcon, AppWindow as AppWindowIcon } from 'lucide-vue-next'
 
 const props = defineProps({
   serviceSlug: {

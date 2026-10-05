@@ -1,553 +1,86 @@
 <template>
-  <div class="bg-neutral-white min-h-screen">
-    <!-- 1. Page Header -->
-    <div class="container-custom section-padding">
-      <div class="container-custom section-rhythm">
-
-
-        <!-- Downloadable Resources Section -->
-        <section aria-labelledby="downloads-heading">
-          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div>
-              <h2 id="downloads-heading" class="campaign-header text-3xl text-secondary mb-4">
-                {{ resourcesDownloadsTitle }}
-              </h2>
-              <p class="text-black/60 font-bold text-lg">Public awareness materials and official guidance.</p>
-            </div>
-            <div class="pill bg-primary/10 text-primary">
-              {{ resources.length }} {{ resourcesAvailable }}
-            </div>
-          </div>
-
-          <!-- Search & Filters -->
-          <div class="bg-neutral-offwhite rounded-[2.5rem] p-8 mb-16 shadow-none">
-            <div class="flex flex-col md:flex-row gap-8">
-              <div class="flex-1 relative group">
-                <Search
-                  class="absolute left-6 top-1/2 transform -translate-y-1/2 w-6 h-6 text-primary group-focus-within:text-secondary transition-colors" />
-                <input v-model="search" type="text" :placeholder="resourcesSearchPlaceholder"
-                  class="w-full pl-16 pr-6 py-4 bg-white shadow-sm border-none focus:ring-0 focus:shadow-md rounded-2xl font-bold text-secondary outline-none transition-all" />
-              </div>
-              <div class="relative min-w-[240px]">
-                <select v-model="category"
-                  class="w-full appearance-none pl-6 pr-12 py-4 bg-white shadow-sm border-none focus:ring-0 focus:shadow-md rounded-2xl font-bold text-secondary uppercase tracking-widest text-[10px] outline-none transition-all cursor-pointer">
-                  <option value="">{{ resourcesAllCategories }}</option>
-                  <option v-for="cat in categories" :key="cat.slug || cat.id" :value="cat.slug || cat.id">
-                    {{ cat.name }}
-                  </option>
-                </select>
-                <ChevronDown
-                  class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-primary pointer-events-none" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Resources Loading -->
-          <AppLoader v-if="loading" :message="settingsStore.settings.resources_loading" />
-
-          <!-- Resources Grid -->
-          <div v-else-if="resources.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <article v-for="resource in resources" :key="resource.id"
-              class="group bg-neutral-white rounded-[3.5rem] border-2 border-neutral-offwhite transition-all duration-500 hover:shadow-2xl hover:border-primary/30 transform hover:-translate-y-2 overflow-hidden flex flex-col">
-
-              <div class="p-10 flex-1 flex flex-col">
-                <div class="mb-8">
-                  <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8">
-                    <Speaker v-if="isAudio(resource)" class="w-8 h-8 text-primary" />
-                    <FileText v-else class="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 class="text-2xl font-bold text-secondary mb-4 leading-tight line-clamp-2">{{ resource.title
-                  }}</h3>
-                  <p class="text-lg text-black/50 font-bold leading-relaxed line-clamp-3">{{
-                    resource.description }}</p>
-                </div>
-
-                <div class="flex flex-wrap gap-3 mb-10 mt-auto">
-                  <span v-if="resource.category_name" class="pill bg-primary text-neutral-white">{{
-                    resource.category_name }}</span>
-                  <span v-if="resource.language" class="pill bg-secondary-light text-neutral-white">{{
-                    getLanguageName(resource.language) }}</span>
-                </div>
-
-                <div v-if="isAudio(resource) && resource.file" class="mb-8 p-4 bg-neutral-offwhite rounded-2xl">
-                  <audio :src="resource.file" controls class="w-full"></audio>
-                </div>
-
-                <div class="flex items-center justify-between pt-8 border-t-2 border-neutral-offwhite">
-                  <BaseCTA v-if="resource.file" :href="resource.file" variant="primary" class="!py-3 !px-6 text-[10px]"
-                    external download>
-                    Download
-                  </BaseCTA>
-                  <div class="text-[10px] font-bold text-black/40 uppercase tracking-widest">
-                    <span class="text-secondary">{{ resource.download_count || 0 }}</span> Downloads
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <!-- Empty State -->
-          <div v-else
-            class="text-center py-24 bg-neutral-offwhite/30 rounded-[3rem] border-2 border-dashed border-primary max-w-2xl mx-auto">
-            <div
-              class="w-20 h-20 bg-neutral-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm border-2 border-primary">
-              <Search class="w-10 h-10 text-primary" />
-            </div>
-            <h3 class="text-2xl font-bold text-secondary mb-2">{{ settingsStore.settings.resources_no_results ||
-              'No Resources Found' }}</h3>
-            <p class="text-black/50 font-bold mb-8">{{ settingsStore.settings.resources_no_results_subtitle ||
-              'Try adjusting your search criteria.' }}</p>
-            <button @click="search = ''; category = ''" class="btn btn-outline">Clear all filters</button>
-          </div>
-
-          <!-- Pagination -->
-          <div v-if="pagination.next || pagination.previous" class="mt-20 flex justify-center gap-6">
-            <button :disabled="!pagination.previous || loading" @click="prevPage"
-              class="btn btn-outline px-8">Previous</button>
-            <button :disabled="!pagination.next || loading" @click="nextPage" class="btn btn-outline px-8">Next</button>
-          </div>
-        </section>
-
-
+  <div class="public-page resource-library">
+    <header class="page-header"><div class="container-custom resource-intro"><div><p class="section-label">Knowledge & support</p><h1>{{ resourcesDownloadsTitle }}</h1><p class="page-header-subtitle">Public awareness materials and official guidance.</p><a href="#resource-search" class="text-link">Find a resource <ArrowDown aria-hidden="true" /></a></div><img src="@/assets/sauti_happy_students.png" alt="Children together at school in Uganda" fetchpriority="high" /></div></header>
+    <section class="container-custom library-content" aria-labelledby="library-heading">
+      <div class="library-title"><div><p class="section-label">The resource library</p><h2 id="library-heading">Guidance you can keep.</h2></div><p aria-live="polite">{{ loading ? 'Loading resources…' : error ? 'Library unavailable' : `${pagination.count} ${resourcesAvailable}` }}</p></div>
+      <form id="resource-search" class="library-filters" role="search" @submit.prevent="fetchList(1)">
+        <label class="library-search"><span>Search resources</span><div><Search aria-hidden="true" /><input v-model="search" :placeholder="resourcesSearchPlaceholder" type="search" /></div></label>
+        <label><span>Category</span><select v-model="category"><option value="">{{ resourcesAllCategories }}</option><option v-for="cat in categories" :key="cat.slug || cat.id" :value="cat.slug || cat.id">{{ cat.name }}</option></select></label>
+        <label><span>Language</span><select v-model="language"><option value="">All languages</option><option value="en">English</option><option value="lg">Luganda</option><option value="sw">Swahili</option></select></label>
+        <button class="library-reset" type="button" :disabled="!search && !category && !language" @click="clearFilters">Clear filters</button>
+      </form>
+      <AppLoader v-if="loading" message="Loading resources…" />
+      <div v-else-if="error" class="library-state" role="status"><CircleAlert aria-hidden="true" /><h3>Resources are temporarily unavailable.</h3><p>We couldn’t load the library. Please try again.</p><button type="button" class="btn btn-primary" @click="fetchList(page)">Try again</button></div>
+      <div v-else-if="resources.length" class="library-grid">
+        <article v-for="resource in resources" :key="resource.id" class="library-card">
+          <div class="library-card-top"><component :is="isAudioResource(resource)?Headphones:FileText" aria-hidden="true" /><span>{{ isAudioResource(resource)?'Audio':(resource.file_type || 'Document').toUpperCase() }}</span></div>
+          <div class="library-meta"><span v-if="resource.category_name || resource.category?.name">{{ resource.category_name || resource.category.name }}</span><span v-if="resource.language">{{ getLanguageName(resource.language) }}</span></div>
+          <h3>{{ resource.title }}</h3><p>{{ resource.description }}</p>
+          <audio v-if="isAudioResource(resource) && resource.file" :src="resource.file" controls preload="none" :aria-label="`Listen to ${resource.title}`" />
+          <div class="library-card-bottom"><a v-if="resource.file" :href="resource.file" :download="resource.title" target="_blank" rel="noopener noreferrer" :aria-label="`Download ${resource.title}`">Download <Download aria-hidden="true" /></a><span v-else>File unavailable</span><small>{{ resource.download_count || 0 }} downloads</small></div>
+        </article>
       </div>
-    </div>
+      <div v-else class="library-state" role="status"><Search aria-hidden="true" /><h3>{{ settingsStore.settings.resources_no_results || 'No Resources Found' }}</h3><p>{{ settingsStore.settings.resources_no_results_subtitle || 'Try adjusting your search criteria.' }}</p><button v-if="search || category || language" type="button" class="btn btn-outline" @click="clearFilters">Clear all filters</button></div>
+      <nav v-if="pagination.next || pagination.previous" class="library-pagination" aria-label="Resource pages"><button :disabled="!pagination.previous || loading" @click="fetchList(resourcePage(pagination.previous))">Previous</button><span>Page {{ page }}</span><button :disabled="!pagination.next || loading" @click="fetchList(resourcePage(pagination.next))">Next</button></nav>
+      <aside class="library-help"><ShieldCheck aria-hidden="true" /><div><h3>Need to talk to someone?</h3><p>Call 116 for free, confidential support, any time.</p></div><a href="tel:116">Call 116 <ArrowUpRight aria-hidden="true" /></a></aside>
+    </section>
   </div>
 </template>
-
 <script setup>
-  import { ref, watch, onMounted, onUnmounted, computed } from 'vue'
-  import { useResourcesStore } from '@/store/resources'
-  import { useSettingsStore } from '@/store/settings'
-  import { api } from '@/utils/axios'
-  import AppLoader from '@/components/common/AppLoader.vue'
-  import BaseCTA from '@/components/common/BaseCTA.vue'
-  import {
-    Search,
-    ChevronDown,
-    FileText,
-    Speaker,
-    AlertTriangle,
-    Code,
-    Globe,
-    Phone,
-    ShieldCheck,
-    BarChart
-  } from 'lucide-vue-next'
-  import {
-    Chart as ChartJS,
-    ArcElement,
-    Tooltip,
-    Legend,
-    BarElement,
-    CategoryScale,
-    LinearScale,
-    Title,
-    LineElement,
-    PointElement
-  } from 'chart.js'
-  import { Doughnut, Bar, Line } from 'vue-chartjs'
-
-  ChartJS.register(
-    ArcElement,
-    Tooltip,
-    Legend,
-    BarElement,
-    CategoryScale,
-    LinearScale,
-    Title,
-    LineElement,
-    PointElement
-  )
-
-  defineOptions({
-    name: 'ResourcesPage'
-  })
-
-  const resourcesStore = useResourcesStore()
-  const settingsStore = useSettingsStore()
-
-  const brand_colors = computed(() => ({
-    primary: settingsStore.settings.primary_color || '#2B4C7E',
-    secondary: settingsStore.settings.secondary_color || '#023047',
-    'secondary-light': settingsStore.settings.secondary_light_color || '#8ECAE6',
-    'hotline': settingsStore.settings.accent_orange_color || '#FB8500',
-    'accent-yellow': settingsStore.settings.accent_yellow_color || '#FFB703',
-    'emergency': settingsStore.settings.emergency_color || '#D00000',
-    'neutral-white': '#FFFFFF',
-    'neutral-offwhite': '#F8F9FA'
-  }))
-
-  const resources = ref([])
-  const loading = ref(true)
-  const search = ref('')
-  const category = ref('')
-  const language = ref('')
-  const categories = ref([])
-  const pagination = ref({ count: 0, next: null, previous: null })
-
-  const resourcesStatsTitle = computed(() => settingsStore.settings?.resources_stats_title || 'Live Help Performance')
-  const resourcesStatsUpdated = computed(() => settingsStore.settings?.resources_stats_updated || 'Real-time Statistics')
-  const resourcesStatsError = computed(() => settingsStore.settings?.resources_stats_error || 'Resource statistics temporary unavailable')
-  const resourcesCasesByCategory = computed(() => settingsStore.settings?.resources_cases_by_category || 'Cases by Category')
-  const resourcesReportsOverTime = computed(() => settingsStore.settings?.resources_reports_over_time || 'Reports Over Time')
-  const resourcesDownloadsTitle = computed(() => settingsStore.settings?.resources_downloads_title || 'Resources')
-  const resourcesAvailable = computed(() => settingsStore.settings?.resources_available || 'items available')
-  const resourcesSearchPlaceholder = computed(() => settingsStore.settings?.resources_search_placeholder || 'Search keywords...')
-  const resourcesAllCategories = computed(() => settingsStore.settings?.resources_all_categories || 'All Categories')
-
-  // Statistics
-  const statsLoading = ref(true)
-  const statsError = ref(null)
-  const stats = ref(null)
-
-  // Call Statistics (v1 Normalized)
-  const callStatsLoading = ref(true)
-  const callStats = ref(null)
-
-  // Polling reference
-  let pollingInterval = null
-
-  // Fetch statistics
-  onMounted(async () => {
-    await settingsStore.fetchGlobalSettings()
-    try {
-      const [cats] = await Promise.all([
-        resourcesStore.fetchCategories(),
-        fetchList(),
-        fetchStats(),
-        fetchCallStats()
-      ])
-      categories.value = Array.isArray(cats) ? cats : []
-
-      // Setup polling every 3 minutes (180,000 ms)
-      pollingInterval = setInterval(fetchCallStats, 180000)
-    } catch (error) {
-      console.error('Error initializing resources:', error)
-      categories.value = []
-    } finally {
-      loading.value = false
-    }
-  })
-
-  onUnmounted(() => {
-    if (pollingInterval) {
-      clearInterval(pollingInterval)
-      pollingInterval = null
-    }
-  })
-
-  async function fetchStats() {
-    statsLoading.value = true
-    statsError.value = null
-    try {
-      const response = await api.get('/reports/stats/public/')
-      stats.value = response.data
-    } catch (err) {
-      console.error('Failed to fetch stats:', err)
-      statsError.value = 'Failed to load statistics. Please try again later.'
-    } finally {
-      statsLoading.value = false
-    }
-  }
-
-  async function fetchCallStats() {
-    callStatsLoading.value = true
-    try {
-      const response = await api.get('/v1/calls/stats/keypair/')
-      callStats.value = response.data
-    } catch (err) {
-      console.error('Failed to fetch call stats:', err)
-    } finally {
-      callStatsLoading.value = false
-    }
-  }
-
-  // Helpline Call Trends Chart
-  const callTrendData = computed(() => {
-    if (!callStats.value?.calls) return { labels: [], datasets: [] }
-
-    // Get all unique buckets (X-axis)
-    const buckets = new Set()
-    Object.values(callStats.value.calls).forEach(statusData => {
-      Object.keys(statusData).forEach(bucket => buckets.add(bucket))
-    })
-    const sortedBuckets = Array.from(buckets).sort((a, b) => parseInt(a) - parseInt(b))
-
-    // Format buckets as HH:MM
-    const labels = sortedBuckets.map(b => {
-      const totalSeconds = parseInt(b)
-      const hours = Math.floor(totalSeconds / 3600) % 24
-      const minutes = Math.floor((totalSeconds % 3600) / 60)
-      return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
-    })
-
-    const statusColors = {
-      'answered': brand_colors.value['primary'],
-      'abandoned': brand_colors.value['hotline'],
-      'busy': brand_colors.value['secondary']
-    }
-
-    const datasets = Object.keys(callStats.value.calls).map(status => {
-      const color = statusColors[status.toLowerCase()] || brand_colors.value['secondary-light']
-      return {
-        label: status.charAt(0).toUpperCase() + status.slice(1),
-        borderColor: color,
-        backgroundColor: color + '22',
-        data: sortedBuckets.map(b => callStats.value.calls[status][b] || 0),
-        tension: 0.4,
-        fill: true,
-        pointRadius: 4,
-        pointHoverRadius: 6
-      }
-    })
-
-    return { labels, datasets }
-  })
-
-  const lineOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: 'top',
-        labels: {
-          usePointStyle: true,
-          font: { family: 'Inter', weight: 'bold' },
-          color: brand_colors.value['secondary']
-        }
-      },
-      tooltip: {
-        mode: 'index',
-        intersect: false,
-        backgroundColor: brand_colors.value['secondary'],
-        titleFont: { family: 'Inter', size: 14, weight: 'bold' },
-        bodyFont: { family: 'Inter', size: 12 }
-      }
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        grid: { color: brand_colors.value['neutral-offwhite'] },
-        ticks: {
-          font: { family: 'Inter', weight: 'bold' },
-          color: brand_colors.value['secondary'] + '80'
-        }
-      },
-      x: {
-        grid: { display: false },
-        ticks: {
-          font: { family: 'Inter', weight: 'bold' },
-          color: brand_colors.value['secondary'] + '80'
-        }
-      }
-    }
-  }
-
-  // Chart data
-  const categoryChartData = computed(() => {
-    if (!stats.value?.by_category) return { labels: [], datasets: [] }
-
-    const labels = stats.value.by_category.map(item => formatCategory(item.category))
-    const data = stats.value.by_category.map(item => item.count)
-
-    return {
-      labels,
-      datasets: [{
-        backgroundColor: [
-          brand_colors.value['primary'],
-          brand_colors.value['hotline'],
-          brand_colors.value['secondary'],
-          brand_colors.value['secondary-light']
-        ],
-        borderWidth: 0,
-        data
-      }]
-    }
-  })
-
-  const timeChartData = computed(() => {
-    if (!stats.value?.over_time) return { labels: [], datasets: [] }
-
-    const labels = stats.value.over_time.map(item => {
-      const date = new Date(item.month)
-      return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
-    })
-    const data = stats.value.over_time.map(item => item.count)
-
-    return {
-      labels,
-      datasets: [{
-        label: 'Reports',
-        backgroundColor: brand_colors.value['primary'],
-        borderRadius: 16,
-        barThickness: 24,
-        data
-      }]
-    }
-  })
-
-  const doughnutOptions = {
-    responsive: true,
-    maintainAspectRatio: true,
-    cutout: '75%',
-    plugins: {
-      legend: {
-        position: 'bottom',
-        labels: {
-          padding: 32,
-          font: {
-            size: 11,
-            weight: '900',
-            family: 'Inter'
-          },
-          usePointStyle: true,
-          pointStyle: 'rectRounded',
-          color: brand_colors.value['secondary']
-        }
-      },
-      tooltip: {
-        backgroundColor: brand_colors.value['secondary'],
-        padding: 16,
-        titleFont: {
-          size: 14,
-          weight: '900'
-        },
-        bodyFont: {
-          size: 13,
-          weight: '700'
-        },
-        cornerRadius: 16,
-        displayColors: false
-      }
-    }
-  }
-
-  const barOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false
-      },
-      tooltip: {
-        backgroundColor: brand_colors.value['secondary'],
-        padding: 16,
-        titleFont: {
-          size: 14,
-          weight: '900'
-        },
-        bodyFont: {
-          size: 13,
-          weight: '700'
-        },
-        cornerRadius: 16,
-        displayColors: false
-      }
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: {
-          stepSize: 1,
-          font: {
-            size: 11,
-            weight: '900',
-            family: 'Inter'
-          },
-          color: brand_colors.value['primary'] + '80'
-        },
-        grid: {
-          color: brand_colors.value['primary'] + '20',
-          drawBorder: false
-        }
-      },
-      x: {
-        ticks: {
-          font: {
-            size: 11,
-            weight: '900',
-            family: 'Inter'
-          },
-          color: brand_colors.value['primary'] + '80'
-        },
-        grid: {
-          display: false
-        }
-      }
-    }
-  }
-
-  function formatCategory(code) {
-    const map = {
-      'CHILD_PROTECTION': 'Child Protection',
-      'GBV': 'Gender-Based Violence',
-      'MIGRANT': 'Migrant Worker',
-      'PSEA': 'PSEA'
-    }
-    return map[code] || code
-  }
-
-  function getCategoryCount(category) {
-    if (!stats.value?.by_category) return 0
-    const found = stats.value.by_category.find(item => item.category === category)
-    return found ? found.count : 0
-  }
-
-  function getStatusCount(status) {
-    if (!stats.value?.by_status) return 0
-    const found = stats.value.by_status.find(item => item.status === status)
-    return found ? found.count : 0
-  }
-
-  watch([search, category, language], () => {
-    fetchList()
-  })
-
-  async function fetchList() {
-    loading.value = true
-    try {
-      const params = {
-        status: 'PUBLISHED'
-      }
-      if (search.value) params.search = search.value
-      if (category.value) params.category = category.value
-      if (language.value) params.language = language.value
-      await resourcesStore.fetchResources(params)
-      resources.value = Array.isArray(resourcesStore.resources) ? resourcesStore.resources : []
-      pagination.value = resourcesStore.pagination || { count: 0, next: null, previous: null }
-    } catch (error) {
-      console.error('Error fetching resources:', error)
-      resources.value = []
-    } finally {
-      loading.value = false
-    }
-  }
-
-  function nextPage() {
-    if (!pagination.value.next) return
-    fetchList()
-  }
-
-  function prevPage() {
-    if (!pagination.value.previous) return
-    fetchList()
-  }
-
-  function getLanguageName(code) {
-    const languages = {
-      'en': 'English',
-      'lg': 'Luganda',
-      'sw': 'Swahili'
-    }
-    return languages[code] || code.toUpperCase()
-  }
-
-  function isAudio(resource) {
-    const type = (resource.file_type || '').toLowerCase()
-    const url = (resource.file || '').toLowerCase()
-    const exts = ['mp3', 'm4a', 'wav', 'ogg']
-    return exts.some(ext => type.includes(ext) || url.endsWith(`.${ext}`))
-  }
+import {ref,computed,watch,onMounted,onUnmounted} from 'vue'
+import {Search,FileText,Headphones,Download,ArrowDown,ArrowUpRight,ShieldCheck,CircleAlert} from 'lucide-vue-next'
+import {useResourcesStore} from '@/store/resources'
+import {useSettingsStore} from '@/store/settings'
+import AppLoader from '@/components/common/AppLoader.vue'
+import {normalizeResources,resourcePage,isAudioResource} from '@/utils/resource-catalogue'
+const resourcesStore=useResourcesStore(),settingsStore=useSettingsStore()
+const resources=ref([]),loading=ref(true),error=ref(false),search=ref(''),category=ref(''),language=ref(''),categories=ref([]),page=ref(1)
+const pagination=ref({count:0,next:null,previous:null})
+const resourcesDownloadsTitle=computed(()=>settingsStore.settings.resources_downloads_title || 'Resources')
+const resourcesAvailable=computed(()=>settingsStore.settings.resources_available || 'items available')
+const resourcesSearchPlaceholder=computed(()=>settingsStore.settings.resources_search_placeholder || 'Search keywords…')
+const resourcesAllCategories=computed(()=>settingsStore.settings.resources_all_categories || 'All Categories')
+let timer,request=0
+async function fetchList(targetPage=1){
+ clearTimeout(timer)
+ const current=++request;loading.value=true;error.value=false;page.value=targetPage
+ try{
+  const data=await resourcesStore.fetchResources({status:'PUBLISHED',page:targetPage,...(search.value?{search:search.value}:{}),...(category.value?{category:category.value}:{}),...(language.value?{language:language.value}:{})})
+  if(current!==request)return
+  const normalized=normalizeResources(data)
+  resources.value=normalized.results;pagination.value={count:normalized.count,next:normalized.next,previous:normalized.previous}
+ }catch{if(current===request){error.value=true;resources.value=[];pagination.value={count:0,next:null,previous:null}}}
+ finally{if(current===request)loading.value=false}
+}
+function clearFilters(){search.value='';category.value='';language.value='';fetchList(1)}
+const getLanguageName=code=>({en:'English',lg:'Luganda',sw:'Swahili'}[code] || code)
+watch(search,()=>{++request;loading.value=true;clearTimeout(timer);timer=setTimeout(()=>fetchList(1),300)})
+watch([category,language],()=>fetchList(1))
+onMounted(async()=>{const [cats]=await Promise.all([resourcesStore.fetchCategories(),fetchList()]);categories.value=cats})
+onUnmounted(()=>{clearTimeout(timer);++request})
 </script>
-
-<style scoped></style>
+<style scoped>
+.resource-intro{display:grid;grid-template-columns:1.3fr 1fr;gap:4rem;align-items:center;}
+.resource-intro h1{margin:.75rem 0 1rem;}
+.resource-intro img{width:100%;height:280px;object-fit:cover;border-radius:20px;}
+.resource-intro .text-link{margin-top:1.5rem;}
+.library-content{padding-block:1rem 5rem;}
+.library-title{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:2rem;}
+.library-title h2{margin-top:.5rem;}.library-title>p{font-size:.9375rem;color:var(--ui-secondary-label);margin:0;}
+.library-filters{display:grid;grid-template-columns:2fr 1fr 1fr auto;align-items:end;gap:1rem;padding:1.25rem;border:1px solid var(--ui-separator);border-radius:16px;background:var(--ui-surface);box-shadow:var(--ui-control-shadow);margin-bottom:2rem;scroll-margin-top:2rem;}
+.library-filters label>span{display:block;font-size:.8125rem;font-weight:500;margin-bottom:.5rem;color:var(--ui-secondary-label);}
+.library-search>div{position:relative;}.library-search svg{width:1.125rem;height:1.125rem;position:absolute;left:.875rem;top:50%;transform:translateY(-50%);color:var(--ui-secondary-label);}
+.library-filters input,.library-filters select{width:100%;min-width:0;min-height:44px;border:1px solid var(--ui-separator);border-radius:10px;background:var(--ui-background);font-size:.9375rem;padding:.625rem .75rem;}
+.library-search input{padding-left:2.5rem;}.library-reset{min-height:44px;font-size:.875rem;padding:.625rem .5rem;color:var(--ui-accent);}.library-reset:disabled{opacity:.45;}
+.library-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;}
+.library-card{display:flex;flex-direction:column;padding:1.75rem;border:1px solid var(--ui-separator);background:var(--ui-surface);border-radius:20px;min-width:0;box-shadow:var(--ui-control-shadow);}
+.library-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;}.library-card-top svg{width:2rem;height:2rem;color:var(--ui-accent);}.library-card-top span{font-size:.75rem;color:var(--ui-secondary-label);}
+.library-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem;}.library-meta span{font-size:.75rem;background:var(--ui-tint);color:var(--ui-accent);border-radius:6px;padding:.25rem .5rem;}
+.library-card h3{font-size:1.5rem;margin-bottom:1rem;overflow-wrap:anywhere;}.library-card>p{font-size:1rem;line-height:1.6;color:var(--ui-secondary-label);margin-bottom:1.5rem;}
+.library-card audio{width:100%;margin-bottom:1rem;}.library-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:auto;padding-top:1rem;border-top:1px solid var(--ui-separator);}.library-card-bottom a{display:inline-flex;align-items:center;gap:.5rem;color:var(--ui-accent);font-weight:500;min-height:44px;}.library-card-bottom svg{width:1rem;height:1rem;}.library-card-bottom small{font-size:.75rem;color:var(--ui-secondary-label);}
+.library-state{padding:4rem 1.5rem;text-align:center;background:var(--ui-surface);border:1px solid var(--ui-separator);border-radius:20px;}.library-state>svg{width:2rem;height:2rem;margin:0 auto 1.5rem;color:var(--ui-secondary-label);}.library-state h3{font-size:1.5rem;}.library-state p{color:var(--ui-secondary-label);font-size:1rem;margin:1rem 0 1.5rem;}
+.library-pagination{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:2rem;}.library-pagination button{padding:.625rem 1rem;border:1px solid var(--ui-separator);border-radius:10px;min-height:44px;}.library-pagination button:disabled{opacity:.4;}
+.library-help{display:flex;align-items:center;gap:1.25rem;background:var(--ui-tint);padding:1.5rem;border-radius:16px;margin-top:3rem;}.library-help>svg{width:2rem;height:2rem;flex-shrink:0;color:var(--ui-accent);}.library-help h3{font-size:1.125rem;}.library-help p{font-size:1rem;color:var(--ui-secondary-label);margin:.25rem 0 0;}.library-help a{display:inline-flex;align-items:center;gap:.5rem;margin-left:auto;min-height:44px;white-space:nowrap;color:var(--ui-accent);}.library-help a svg{width:1rem;height:1rem;}
+@media(max-width:1023px){.library-filters{grid-template-columns:1fr 1fr}.library-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.resource-intro{gap:2rem}}
+@media(max-width:639px){.resource-intro{grid-template-columns:1fr}.resource-intro img{height:220px}.library-title{flex-direction:column;align-items:flex-start;gap:1rem}.library-filters,.library-grid{grid-template-columns:1fr}.library-help{flex-wrap:wrap;align-items:flex-start}.library-help>div{flex:1}.library-help a{margin-left:3.25rem}.library-card{padding:1.5rem}}
+</style>

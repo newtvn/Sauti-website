@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-neutral-white flex flex-col justify-center section-padding">
+  <div class="public-page min-h-screen bg-neutral-white flex flex-col justify-center section-padding">
     <div class="container-custom max-w-xl mx-auto">
       <!-- Logo / Identity Area -->
       <div class="text-center mb-12">
@@ -13,7 +13,7 @@
 
       <!-- Login Form Card -->
       <div
-        class="bg-neutral-white rounded-[4rem] border-2 border-primary p-10 md:p-16 shadow-2xl relative overflow-hidden">
+        class="bg-neutral-white rounded-2xl border-2 border-primary p-10 md:p-16 shadow-2xl relative overflow-hidden">
         <!-- Decoration -->
         <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-primary/5 rounded-full blur-2xl"></div>
 
@@ -73,13 +73,7 @@
   import { reactive, ref } from 'vue'
   import { useRouter } from 'vue-router'
   import { useAuthStore } from '@/store/auth'
-  import {
-    LockClosedIcon,
-    UserIcon,
-    KeyIcon,
-    ExclamationCircleIcon,
-    ShieldCheckIcon
-  } from '@heroicons/vue/24/outline'
+  import { LockKeyhole as LockClosedIcon, User as UserIcon, KeyRound as KeyIcon, CircleAlert as ExclamationCircleIcon, ShieldCheck as ShieldCheckIcon } from 'lucide-vue-next'
 
   defineOptions({
     name: 'LoginPage'

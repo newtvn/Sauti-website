@@ -1,0 +1,15 @@
+/* Uses San Francisco on Apple devices and the native system face elsewhere. */
+:root {
+  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", sans-serif;
+  --text-caption: .8125rem;
+  --text-secondary: .9375rem;
+  --text-body: 1rem;
+  --text-title: clamp(1.5rem, 2.5vw, 2rem);
+  --text-section: clamp(2rem, 4vw, 3rem);
+  --text-display: clamp(2.75rem, 6vw, 5rem);
+}
+html { font-size: 100%; }
+body, button, input, select, textarea { font-family: var(--font-system); }
+body { font-kerning: normal; -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font-size: inherit; }
+table, time { font-variant-numeric: tabular-nums; }

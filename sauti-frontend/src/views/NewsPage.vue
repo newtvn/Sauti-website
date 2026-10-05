@@ -1,5 +1,5 @@
 <template>
-  <div class="media-page newspage bg-neutral-white min-h-screen">
+  <div class="public-page media-page newspage bg-neutral-white min-h-screen">
     <!-- 1. Page Header -->
     <header class="page-header">
       <div class="container-custom">
@@ -15,7 +15,7 @@
     <div class="container-custom section-padding section-rhythm">
       <!-- 2. Filters Wrapper -->
       <section aria-labelledby="filters-heading">
-        <div class="bg-neutral-offwhite rounded-[3rem] p-8 md:p-12 shadow-none max-w-5xl mx-auto">
+        <div class="bg-neutral-offwhite rounded-2xl p-8 md:p-12 shadow-none max-w-5xl mx-auto">
           <h2 id="filters-heading" class="campaign-header text-sm text-secondary mb-10 opacity-50">Filter News
             Archives</h2>
 
@@ -80,7 +80,7 @@
 
         <!-- Empty State -->
         <div v-else
-          class="text-center py-24 bg-neutral-offwhite/10 rounded-[4rem] border-2 border-dashed border-neutral-offwhite">
+          class="text-center py-24 bg-neutral-offwhite/10 rounded-2xl border-2 border-dashed border-neutral-offwhite">
           <div
             class="w-24 h-24 bg-neutral-white border-2 border-primary rounded-[2rem] flex items-center justify-center mx-auto mb-8 text-primary shadow-sm">
             <DocumentTextIcon class="w-12 h-12 opacity-30" />
@@ -100,13 +100,7 @@
   import AppLoader from '@/components/common/AppLoader.vue'
   import { useBlogStore } from '@/store/blog'
   import { useSettingsStore } from '@/store/settings'
-  import {
-    MagnifyingGlassIcon,
-    ChevronDownIcon,
-    ChevronLeftIcon,
-    ChevronRightIcon,
-    DocumentTextIcon
-  } from '@heroicons/vue/24/outline'
+  import { Search as MagnifyingGlassIcon, ChevronDown as ChevronDownIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, FileText as DocumentTextIcon } from 'lucide-vue-next'
 
   defineOptions({
     name: 'NewsPage'

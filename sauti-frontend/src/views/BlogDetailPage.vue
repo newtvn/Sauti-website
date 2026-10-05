@@ -1,65 +1,11 @@
 <template>
-  <div class="min-h-screen bg-neutral-white">
+  <div class="public-page min-h-screen bg-neutral-white">
     <!-- Loading State -->
     <AppLoader v-if="loading" :fullScreen="true" message="Loading article..." />
 
     <!-- Article Content -->
     <article v-else-if="post" class="bg-neutral-white">
-      <!-- 1. Article Hero Section -->
-      <section class="relative h-[60vh] min-h-[500px] overflow-hidden bg-secondary">
-        <img v-if="post.featured_image" :src="post.featured_image" :alt="post.title"
-          class="absolute inset-0 w-full h-full object-cover opacity-60 scale-105" @error="setPlaceholder" />
-        <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-transparent"></div>
-
-        <div class="relative h-full container-custom flex flex-col justify-end pb-16 md:pb-24">
-          <!-- Category Pill -->
-          <div v-if="post.category" class="mb-8">
-            <span class="pill bg-hotline text-neutral-white text-[10px] shadow-xl">
-              {{ post.category.name }}
-            </span>
-          </div>
-
-          <!-- Title -->
-          <h1 class="page-header-title text-neutral-white !mb-10 max-w-5xl">
-            {{ post.title }}
-          </h1>
-
-          <!-- Meta Info -->
-          <div class="flex flex-wrap items-center gap-8">
-            <!-- Author Card -->
-            <div class="flex items-center gap-4">
-              <div
-                class="w-14 h-14 rounded-2xl bg-neutral-white/10 backdrop-blur-md flex items-center justify-center text-neutral-white font-bold text-xl border border-neutral-white/20">
-                {{ getAuthorInitial() }}
-              </div>
-              <div>
-                <p class="campaign-header text-[10px] text-neutral-white mb-1">
-                  {{ post.author?.username || post.author_name || 'Sauti Uganda' }}
-                </p>
-                <p class="campaign-header text-[10px] text-neutral-white/40">
-                  {{ formatDate(post.published_at) }}
-                </p>
-              </div>
-            </div>
-
-            <div class="hidden sm:block w-px h-8 bg-neutral-white/20"></div>
-
-            <!-- Reading Time -->
-            <div class="flex items-center gap-3 campaign-header text-[10px] text-neutral-white/70">
-              <ClockIcon class="w-5 h-5 text-primary" />
-              <span>{{ readingTime }} min read</span>
-            </div>
-
-            <div class="hidden sm:block w-px h-8 bg-neutral-white/20"></div>
-
-            <!-- Views -->
-            <div class="flex items-center gap-3 campaign-header text-[10px] text-neutral-white/70">
-              <EyeIcon class="w-5 h-5 text-secondary-light" />
-              <span>{{ formatViews(post.views_count) }}</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <header class="article-heading container-custom"><router-link to="/blogs" class="text-link"><ArrowLeftIcon aria-hidden="true" /> Back to Updates</router-link><p v-if="post.category" class="section-label">{{ post.category.name }}</p><h1>{{ post.title }}</h1><div class="article-meta"><span>{{ post.author?.username || post.author_name || 'Sauti Uganda' }}</span><span>{{ formatDate(post.published_at) }}</span><span><ClockIcon aria-hidden="true" /> {{ readingTime }} min read</span><span><EyeIcon aria-hidden="true" /> {{ formatViews(post.views_count) }}</span></div><img v-if="post.featured_image" :src="post.featured_image" :alt="post.title" @error="setPlaceholder" /></header>
 
       <!-- 2. Article Body Wrapper -->
       <div class="section-padding bg-neutral-white">
@@ -85,7 +31,7 @@
           </div>
 
           <!-- Share Action Group -->
-          <div class="bg-neutral-offwhite/30 rounded-[3rem] p-10 md:p-16 border-2 border-neutral-offwhite">
+          <div class="bg-neutral-offwhite/30 rounded-2xl p-10 md:p-16 border-2 border-neutral-offwhite">
             <div class="flex flex-col md:flex-row items-center justify-between gap-12">
               <div class="text-center md:text-left">
                 <h3 class="campaign-header text-2xl text-secondary mb-3">Share this article</h3>
@@ -117,7 +63,7 @@
 
           <!-- Author Biography -->
           <div
-            class="mt-20 flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-10 p-10 bg-primary/5 rounded-[3rem] border-2 border-primary/10">
+            class="mt-20 flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-10 p-10 bg-primary/5 rounded-2xl border-2 border-primary/10">
             <div
               class="w-24 h-24 rounded-[2rem] bg-primary flex items-center justify-center text-neutral-white font-bold text-4xl shadow-xl shrink-0">
               {{ getAuthorInitial() }}
@@ -185,7 +131,7 @@
           </div>
 
           <div v-else
-            class="text-center py-20 bg-neutral-white rounded-[3rem] border-2 border-dashed border-neutral-offwhite">
+            class="text-center py-20 bg-neutral-white rounded-2xl border-2 border-dashed border-neutral-offwhite">
             <p class="campaign-header text-black/30">No related articles found</p>
           </div>
         </div>
@@ -195,12 +141,12 @@
     <!-- 4. Not Found State -->
     <div v-else class="min-h-screen bg-neutral-white flex items-center justify-center p-10">
       <div
-        class="max-w-2xl w-full bg-neutral-white rounded-[4rem] p-16 text-center shadow-2xl border-2 border-primary">
+        class="max-w-2xl w-full bg-neutral-white rounded-2xl p-16 text-center shadow-2xl border-2 border-primary">
         <div
           class="w-24 h-24 bg-primary/10 border-2 border-primary rounded-3xl flex items-center justify-center mx-auto mb-10 text-primary">
           <DocumentTextIcon class="w-12 h-12" />
         </div>
-        <h2 class="campaign-header text-4xl text-secondary mb-6">Article Not Found</h2>
+        <h1 class="campaign-header text-4xl text-secondary mb-6">Article Not Found</h1>
         <p class="text-xl font-bold text-black/50 mb-12">The article you're looking for doesn't exist or has
           been removed from our records.</p>
         <BaseCTA href="/blogs" variant="primary" class="inline-flex items-center gap-4 !px-12">
@@ -218,15 +164,7 @@
   import { useBlogStore } from '@/store/blog'
   import AppLoader from '@/components/common/AppLoader.vue'
   import BaseCTA from '@/components/common/BaseCTA.vue'
-  import {
-    ClockIcon,
-    EyeIcon,
-    LinkIcon,
-    CheckIcon,
-    ShareIcon,
-    ArrowLeftIcon,
-    DocumentTextIcon
-  } from '@heroicons/vue/24/outline'
+  import { Clock as ClockIcon, Eye as EyeIcon, Link as LinkIcon, Check as CheckIcon, Share2 as ShareIcon, ArrowLeft as ArrowLeftIcon, FileText as DocumentTextIcon } from 'lucide-vue-next'
   import helplineAction from '@/assets/helpline-action.png'
 
   defineOptions({
@@ -374,7 +312,7 @@
   }
 
   :deep(.prose-sauti img) {
-    @apply my-20 rounded-[4rem] border-4 border-primary shadow-2xl;
+    @apply my-20 rounded-2xl border-4 border-primary shadow-2xl;
   }
 
   :deep(.prose-sauti ul),
@@ -389,4 +327,8 @@
   :deep(.prose-sauti a) {
     @apply font-bold text-primary underline underline-offset-8 decoration-4 hover:text-secondary transition-all;
   }
+</style>
+
+<style scoped>
+.article-heading{padding-block:3rem 1rem}.article-heading>.text-link{margin-bottom:2rem}.article-heading>.text-link svg{width:1rem;height:1rem}.article-heading>.section-label{margin:0 0 1rem}.article-heading h1{max-width:22ch;margin-bottom:2rem}.article-meta{display:flex;flex-wrap:wrap;gap:1rem 2rem;color:var(--ui-secondary-label);font-size:.9375rem;margin-bottom:2rem}.article-meta span{display:inline-flex;align-items:center;gap:.5rem}.article-meta svg{width:1rem;height:1rem}.article-heading>img{display:block;width:100%;max-height:560px;aspect-ratio:16/9;object-fit:cover;border-radius:20px}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-neutral-white min-h-screen">
+  <div class="public-page bg-neutral-white min-h-screen">
     <!-- 1. Page Header -->
     <header class="page-header !pb-0">
       <div class="container-custom">
@@ -28,7 +28,7 @@
             <template v-for="contact in nonEmergencyContacts" :key="contact.id">
                <a :href="getLink(contact)" 
                   :target="contact.type === 'location' ? '_blank' : '_self'"
-                  class="block bg-neutral-offwhite rounded-[2.5rem] p-8 transition-colors hover:bg-neutral-offwhite/80 group">
+                  class="block bg-neutral-offwhite rounded-2xl p-8 transition-colors hover:bg-neutral-offwhite/80 group">
                   <div class="flex items-start gap-6">
                     <div class="w-14 h-14 rounded-2xl bg-white text-primary flex items-center justify-center shrink-0">
                       <component :is="getIcon(contact)" class="w-6 h-6" />
@@ -48,7 +48,7 @@
             </template>
             
             <!-- Default Fallback if no contacts -->
-            <div v-if="nonEmergencyContacts.length === 0" class="bg-neutral-offwhite rounded-[2.5rem] p-8">
+            <div v-if="nonEmergencyContacts.length === 0" class="bg-neutral-offwhite rounded-2xl p-8">
                 <div class="flex items-start gap-6">
                    <div class="w-14 h-14 rounded-2xl bg-white text-primary flex items-center justify-center shrink-0">
                       <Mail class="w-6 h-6" />
@@ -71,7 +71,7 @@
         <!-- Right Column: Verification & Form -->
         <div class="space-y-8">
           <!-- Form Card -->
-          <div class="bg-neutral-white border-2 border-neutral-offwhite rounded-[3rem] p-10 relative overflow-hidden">
+          <div class="bg-neutral-white border-2 border-neutral-offwhite rounded-2xl p-10 relative overflow-hidden">
              
             <div class="mb-8">
               <h3 class="text-2xl font-bold text-secondary mb-2">Send a Message</h3>

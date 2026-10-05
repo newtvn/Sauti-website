@@ -1,5 +1,2 @@
-:root {
-  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", sans-serif;
-  --font-roboto: var(--font-system);
-  --font-cronos: var(--font-system);
-}
+@import "./system-typography.css";
+:root { --font-roboto: var(--font-system); --font-cronos: var(--font-system); }

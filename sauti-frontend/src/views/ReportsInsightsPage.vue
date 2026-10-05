@@ -1,5 +1,5 @@
 <template>
- <div class="reports-page">
+ <div class="public-page reports-page">
   <header class="page-header"><div class="container-custom"><p class="section-label">Reports & Insights</p><h1 class="page-header-title">Reports <span>&</span> Insights</h1><p class="page-header-subtitle">{{ reportsInsightsSubtitle }}</p></div></header>
   <div class="page-width reports-content">
    <div class="sample-notice" role="note"><strong>Illustrative sample data</strong><span>The charts below use the website’s existing sample datasets for 2025. They are not live or verified operational statistics.</span></div>

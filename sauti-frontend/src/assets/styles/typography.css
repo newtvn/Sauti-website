@@ -1,0 +1,21 @@
+/* Shared hierarchy: display, section, title, body, secondary and caption. */
+.editorial-site {font-size:var(--text-body);line-height:1.5;}
+.editorial-site #main-content h1 {font-size:var(--text-display) !important;font-weight:600 !important;line-height:1.06 !important;letter-spacing:-.045em !important;text-transform:none !important;text-wrap:balance;}
+.editorial-site #main-content h2 {font-size:var(--text-section);font-weight:600;line-height:1.15;letter-spacing:-.035em;text-wrap:balance;}
+.editorial-site #main-content h3 {font-weight:600;line-height:1.25;letter-spacing:-.02em;text-wrap:balance;}
+.editorial-site #main-content :is(.page-header-subtitle,.prose p) {font-size:1.125rem;line-height:1.65;font-weight:400;max-width:65ch;}
+.editorial-site .section-label {font-size:var(--text-caption);font-weight:600;line-height:1.4;letter-spacing:.06em;}
+.editorial-site .font-black,.editorial-site .font-extrabold {font-weight:600;}
+.editorial-site :is(.prose,.resolution-description) {overflow-wrap:break-word;}
+.editorial-site :is(.about-photo-grid,.community-photo-grid) img {display:block;width:100%;height:100%;object-fit:cover;border-radius:1rem;}
+.editorial-site :is(.about-photo-grid,.community-photo-grid) {gap:.75rem;}
+.editorial-site .about-photo-grid img {object-position:center;}
+.editorial-site :is(.blog-card,.video-card,.news-card) img {object-position:center;}
+.editorial-site a:focus-visible,.editorial-site button:focus-visible,.editorial-site summary:focus-visible {outline:3px solid #517243;outline-offset:4px;}
+
+/* Panel titles stay compact beneath page and section headings. */
+.editorial-site #main-content .report-panel h2 {font-size:var(--text-title);line-height:1.2;}
+.editorial-site #main-content .report-chat h2 {font-size:1.5rem;line-height:1.25;}
+
+.editorial-site #main-content .reading-page h2,.editorial-site #main-content .prose h2{font-size:var(--text-title);line-height:1.25;letter-spacing:-.025em}
+.editorial-site #main-content .reading-page h3,.editorial-site #main-content .prose h3{font-size:1.25rem;line-height:1.3}

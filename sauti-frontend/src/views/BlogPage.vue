@@ -1,5 +1,5 @@
 <template>
-  <div class="media-page blogpage bg-neutral-white min-h-screen">
+  <div class="public-page media-page blogpage bg-neutral-white min-h-screen">
     <!-- 1. Page Header -->
     <header class="page-header !pb-0">
       <div class="container-custom">
@@ -11,7 +11,7 @@
 
     <div class="container-custom section-padding !pt-12">
       <!-- 2. Search & Filters -->
-      <div class="bg-neutral-offwhite rounded-[2.5rem] p-8 mb-16 shadow-none max-w-5xl mx-auto">
+      <div class="bg-neutral-offwhite rounded-2xl p-8 mb-16 shadow-none max-w-5xl mx-auto">
         <div class="flex flex-col md:flex-row gap-8 items-center">
           <div class="relative flex-1 w-full group">
             <Search

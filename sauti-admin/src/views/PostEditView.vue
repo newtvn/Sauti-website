@@ -14,7 +14,7 @@
               </svg>
             </button>
             <div>
-              <h1 class="text-2xl font-bold text-gray-900" style="font-family: 'Roboto', sans-serif;">
+              <h1 class="text-2xl font-bold text-gray-900" style="font-family: var(--font-system);">
                 {{ isEditing ? 'Edit Blog Post' : 'Create New Blog Post' }}
       </h1>
               <p class="text-sm text-gray-500 mt-1">
@@ -79,7 +79,7 @@
             required
                 class="w-full px-4 py-3 border border-gray-300 rounded-xl text-lg font-medium focus:outline-none focus:ring-2 focus:ring-[#8B4000] focus:border-[#8B4000] transition-all duration-200 placeholder-gray-400"
             placeholder="Enter your post title..."
-                style="font-family: 'Roboto', sans-serif;"
+                style="font-family: var(--font-system);"
           />
               <div class="flex items-center justify-between text-xs text-gray-500">
                 <span>{{ form.title.length }}/100 characters</span>
@@ -125,7 +125,7 @@
 You can create paragraphs by pressing Enter twice.
 
 Each paragraph will be properly formatted when displayed."
-                  style="font-family: 'Roboto', sans-serif; line-height: 1.6; min-height: 200px;"
+                  style="font-family: var(--font-system); line-height: 1.6; min-height: 200px;"
             @input="handleContentChange"
                   @focus="handleEditorFocus"
                   @blur="handleEditorBlur"
@@ -151,7 +151,7 @@ Each paragraph will be properly formatted when displayed."
               <svg class="w-5 h-5 text-[#8B4000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
               </svg>
-              <h3 class="text-lg font-semibold text-gray-900" style="font-family: 'Roboto', sans-serif;">Post Settings</h3>
+              <h3 class="text-lg font-semibold text-gray-900" style="font-family: var(--font-system);">Post Settings</h3>
             </div>
           
             <!-- Enhanced Author Field -->
@@ -163,7 +163,7 @@ Each paragraph will be properly formatted when displayed."
               type="text"
               readonly
                   class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 text-gray-600 font-medium"
-                  style="font-family: 'Roboto', sans-serif;"
+                  style="font-family: var(--font-system);"
                 />
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3">
                   <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,7 +180,7 @@ Each paragraph will be properly formatted when displayed."
               v-model="form.publishedAt"
               type="date"
                 class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B4000] focus:border-[#8B4000] transition-all duration-200"
-                style="font-family: 'Roboto', sans-serif;"
+                style="font-family: var(--font-system);"
             />
           </div>
           
@@ -209,7 +209,7 @@ Each paragraph will be properly formatted when displayed."
               type="text"
               placeholder="helpline, children, safety, uganda"
                   class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B4000] focus:border-[#8B4000] transition-all duration-200 placeholder-gray-400"
-                  style="font-family: 'Roboto', sans-serif;"
+                  style="font-family: var(--font-system);"
                 />
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3">
                   <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -226,7 +226,7 @@ Each paragraph will be properly formatted when displayed."
             <select
               v-model="form.status"
               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B4000] focus:border-[#8B4000] transition-all duration-200"
-              style="font-family: 'Roboto', sans-serif;"
+              style="font-family: var(--font-system);"
             >
               <option value="DRAFT">⏳ Draft</option>
               <option value="PUBLISHED">✅ Published</option>
@@ -246,7 +246,7 @@ Each paragraph will be properly formatted when displayed."
               v-model="form.scheduledPublishAt"
               type="datetime-local"
               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B4000] focus:border-[#8B4000] transition-all duration-200"
-              style="font-family: 'Roboto', sans-serif;"
+              style="font-family: var(--font-system);"
             />
             <p class="mt-2 text-xs text-gray-500">
               Set a date and time to automatically publish this post. It will stay as draft until then.
@@ -268,7 +268,7 @@ Each paragraph will be properly formatted when displayed."
               <svg class="w-5 h-5 text-[#8B4000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
               </svg>
-              <h3 class="text-lg font-semibold text-gray-900" style="font-family: 'Roboto', sans-serif;">Featured Image</h3>
+              <h3 class="text-lg font-semibold text-gray-900" style="font-family: var(--font-system);">Featured Image</h3>
             </div>
           
             <div v-if="form.featuredImage || imagePreview" class="relative mb-6">
@@ -303,7 +303,7 @@ Each paragraph will be properly formatted when displayed."
           <button
             @click="imageInput.click()"
               class="w-full mt-4 px-4 py-3 border-2 border-dashed border-[#8B4000] rounded-xl text-sm font-semibold text-[#8B4000] hover:bg-[#8B4000] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8B4000] transition-all duration-200"
-              style="font-family: 'Roboto', sans-serif;"
+              style="font-family: var(--font-system);"
           >
               {{ form.featuredImage || imagePreview ? 'Change Image' : 'Upload Image' }}
           </button>
@@ -316,7 +316,7 @@ Each paragraph will be properly formatted when displayed."
             @click="updatePost"
             :disabled="loading || !form.title"
                 class="w-full btn-primary flex items-center justify-center"
-                style="font-family: 'Roboto', sans-serif;"
+                style="font-family: var(--font-system);"
               >
                 <svg v-if="loading" class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -331,7 +331,7 @@ Each paragraph will be properly formatted when displayed."
           <button
             @click="$router.go(-1)"
                 class="w-full px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300"
-                style="font-family: 'Roboto', sans-serif;"
+                style="font-family: var(--font-system);"
           >
             Cancel
           </button>
@@ -766,7 +766,7 @@ textarea.editor-content {
   text-align: left !important;
   unicode-bidi: normal !important;
   writing-mode: horizontal-tb !important;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: var(--font-system);
   white-space: pre-wrap !important;
   word-wrap: break-word !important;
 }

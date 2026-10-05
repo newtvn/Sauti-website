@@ -7,6 +7,8 @@ import './assets/styles/main.css'
 import './assets/styles/fonts.css'
 import './assets/styles/editorial.css'
 import './assets/styles/community.css'
+import './assets/styles/typography.css'
+import './assets/styles/interface.css'
 
 const app = createApp(App)
 const pinia = createPinia()

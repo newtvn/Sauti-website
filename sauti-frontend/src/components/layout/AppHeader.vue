@@ -1,154 +1,60 @@
 <template>
-  <header
-    class="editorial-header relative z-50 transition-all duration-300">
-    <!-- Skip link handled in App.vue for better first-element accessibility -->
-    <nav class="w-full px-8 xl:px-12" aria-label="Main Navigation">
-      <div class="flex items-center justify-between h-[80px]">
-        <!-- Logo - Text Only at Extreme Left -->
-        <router-link to="/" class="flex items-center group no-underline shrink-0">
-          <span class="brand-wordmark text-2xl tracking-tight text-neutral-black group-hover:text-primary transition-colors duration-300 m-0 font-bold">
-            SAUTI 116
-          </span>
-        </router-link>
-
-        <!-- Centered Desktop Navigation -->
-        <div class="hidden xl:flex flex-1 items-center justify-center">
-          <div class="flex items-center gap-5">
-            <router-link v-for="link in [
-              { to: '/', label: 'Home' },
-              { to: '/about', label: 'Who We Are' },
-              { to: '/operations', label: 'Services' },
-              { to: '/videos', label: 'Videos' },
-              { to: '/blogs', label: 'Updates' },
-              { to: '/resources', label: 'Resources' },
-              { to: '/faqs', label: 'FAQs' },
-              { to: '/contact', label: 'Contact Us' }
-            ]" :key="link.to" :to="link.to"
-              class="text-neutral-black text-base font-semibold transition-all duration-300 hover:text-primary relative py-2"
-              active-class="text-primary">
-              {{ link.label }}
-            </router-link>
-          </div>
-        </div>
-
-        <details class="site-explore hidden xl:block">
-          <summary>More</summary><div @click="closeExplore"><router-link to="/news">News</router-link><router-link to="/reports">Reports & Insights</router-link><router-link to="/partners">Our Partners</router-link><router-link to="/donate">Donate</router-link></div>
-        </details>
-
-        <!-- Right Actions -->
-        <div class="hidden xl:flex items-center gap-3 shrink-0">
-          <!-- Call Button -->
-          <BaseCTA :href="`tel:${settings.hotline_number || '116'}`" variant="emergency" external
-            class="!rounded-full !px-6 !py-2.5 shadow-lg hover:shadow-xl gap-2 !border-0 flex items-center group"
-            aria-label="Call Emergency Helpline 116">
-            <Phone class="w-4 h-4 text-white group-hover:rotate-12 transition-transform" stroke-width="2.5" />
-            <span class="text-sm font-bold">Call 116</span>
-          </BaseCTA>
-
-          <!-- Report Button -->
-          <BaseCTA to="/report" variant="primary"
-            class="!rounded-full !px-6 !py-2.5 !text-sm !font-bold !bg-[#006837] hover:!bg-[#005529] !border-0 text-white shadow-lg hover:shadow-xl">
-            Report a case here
-          </BaseCTA>
-        </div>
-
-        <!-- Mobile Actions Group -->
-        <div class="xl:hidden flex items-center gap-2 relative z-20">
-          <!-- Compact Mobile Call Prompt (Removed per request) -->
-          <!-- <div class="flex items-center gap-1.5 mr-2" aria-label="Call Emergency Helpline 116">
-            <Phone class="w-5 h-5 text-[#ed1c24]" stroke-width="2.5" />
-            <a :href="`tel:${settings.hotline_number || '116'}`" class="font-black text-lg text-[#ed1c24] tracking-tight no-underline">116</a>
-          </div> -->
-
-          <button @click="mobileMenuOpen = !mobileMenuOpen"
-            class="p-2.5 text-secondary bg-white shadow-md border border-gray-100 rounded-full hover:bg-gray-50 active:scale-95 transition-all duration-300 ml-2"
-            aria-label="Toggle menu" :aria-expanded="mobileMenuOpen">
-            <Menu v-if="!mobileMenuOpen" class="w-6 h-6" stroke-width="2.5" />
-            <X v-else class="w-6 h-6 text-red-500" stroke-width="2.5" />
-          </button>
-        </div>
+  <header ref="header" class="site-header" @keydown.esc="closeMenus">
+    <nav class="site-navbar" aria-label="Main Navigation">
+      <router-link to="/" class="site-wordmark" aria-label="Sauti 116 home"><span>Sauti <strong>116</strong></span><small>Uganda’s national child helpline</small></router-link>
+      <div class="site-primary-links"><router-link v-for="link in primaryLinks" :key="link.to" :to="link.to" :aria-current="route.path===link.to?'page':undefined">{{ link.label }}</router-link></div>
+      <div class="site-nav-actions"><a :href="`tel:${settings.hotline_number || '116'}`" class="site-call"><Phone aria-hidden="true" /><span>Call 116</span></a><router-link to="/report" class="site-report">Report a case <ArrowUpRight aria-hidden="true" /></router-link>
+        <details ref="explore" class="site-menu"><summary aria-label="Explore all pages"><Menu aria-hidden="true" /><span>Explore</span><ChevronDown aria-hidden="true" /></summary><div class="site-menu-panel"><p class="site-menu-title">Explore Sauti</p><nav aria-label="All pages"><router-link v-for="link in allLinks" :key="link.to" :to="link.to" :aria-current="route.path===link.to?'page':undefined" @click="closeMenus">{{ link.label }}<ArrowUpRight aria-hidden="true" /></router-link></nav><div class="site-menu-help"><span>Free, confidential support. 24/7.</span><a :href="`tel:${settings.hotline_number || '116'}`">Call 116 <Phone aria-hidden="true" /></a></div></div></details>
       </div>
     </nav>
-
-    <!-- Full Screen Mobile Menu -->
-    <Transition enter-active-class="transition duration-300 ease-out" enter-from-class="opacity-0 translate-y-4"
-      enter-to-class="opacity-100 translate-y-0" leave-active-class="transition duration-200 ease-in"
-      leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-4">
-      <div v-if="mobileMenuOpen"
-        class="xl:hidden absolute inset-x-0 top-full h-[calc(100vh-80px)] bg-white/98 backdrop-blur-3xl border-t border-gray-100 shadow-2xl overflow-y-auto">
-          <div class="grid gap-2 mb-2 border-b border-gray-100 pb-2">
-            <!-- Call Link -->
-            <a :href="`tel:${settings.hotline_number || '116'}`" 
-               class="text-lg font-bold text-[#ed1c24] py-4 px-4 rounded-xl transition-all flex items-center justify-between group hover:bg-red-50 active:bg-red-100">
-               <span class="flex items-center gap-3">
-                 Emergency Call {{ settings.hotline_number || '116' }}
-               </span>
-               <ArrowRight class="w-5 h-5 opacity-30 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#ed1c24]" stroke-width="2.5" />
-            </a>
-            
-            <!-- Report Link -->
-            <router-link to="/report" 
-               class="text-lg font-bold text-[#006837] py-4 px-4 rounded-xl transition-all flex items-center justify-between group hover:bg-green-50 active:bg-green-100"
-               @click="mobileMenuOpen = false">
-               <span class="flex items-center gap-3">
-                 Report a Case Here
-               </span>
-               <ArrowRight class="w-5 h-5 opacity-30 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#006837]" stroke-width="2.5" />
-            </router-link>
-          </div>
-
-          <nav class="grid gap-2 pt-2" aria-label="Mobile Navigation">
-            <router-link v-for="link in [
-              { to: '/', label: 'Home' },
-              { to: '/about', label: 'Who We Are' },
-              { to: '/operations', label: 'Services' },
-              { to: '/videos', label: 'Videos' },
-              { to: '/blogs', label: 'Updates' },
-              { to: '/resources', label: 'Resources' },
-              { to: '/faqs', label: 'FAQs' },
-              { to: '/contact', label: 'Contact Us' },
-              { to: '/news', label: 'News' },
-              { to: '/reports', label: 'Reports & Insights' },
-              { to: '/partners', label: 'Our Partners' },
-              { to: '/donate', label: 'Donate' }
-            ]" :key="link.to" :to="link.to"
-              class="text-lg font-bold text-secondary-light py-4 px-4 rounded-xl transition-all flex items-center justify-center group hover:bg-gray-50 active:bg-gray-100 text-center"
-              active-class="bg-blue-50 text-primary !font-black" @click="mobileMenuOpen = false">
-              {{ link.label }}
-              <!-- Arrow removed for centered clean look, or kept if preferred? User asked to center menus. Usually arrow implies left-right. I will remove arrow to perfectly center. -->
-            </router-link>
-          </nav>
-        </div>
-    </Transition>
   </header>
 </template>
-
 <script setup>
-  import { ref, computed, onMounted } from 'vue'
-  import { useSettingsStore } from '@/store/settings'
-  import BaseCTA from '@/components/common/BaseCTA.vue'
-  import BaseLogo from '@/components/common/BaseLogo.vue'
-  import {
-    Phone,
-    Menu,
-    X,
-    ArrowRight,
-    ShieldCheck
-  } from 'lucide-vue-next'
-
-  const settingsStore = useSettingsStore()
-  const mobileMenuOpen = ref(false)
-  const closeExplore = (event) => { event.currentTarget.closest('details').open = false }
-
-  const settings = computed(() => settingsStore.settings)
-  const orgProfile = computed(() => settingsStore.orgProfile)
-
-  const filteredOrgName = computed(() => {
-    const name = orgProfile.value?.name || settings.value.site_name || 'Sauti 116'
-    // Remove "National" and "Child" to follow streamlined branding if preferred, 
-    // but definitely "National" as per user request
-    return name.replace(/National/gi, '').trim()
-  })
+import {computed,ref,watch,onMounted,onUnmounted} from 'vue'
+import {useRoute} from 'vue-router'
+import {useSettingsStore} from '@/store/settings'
+import {Phone,ArrowUpRight,Menu,ChevronDown} from 'lucide-vue-next'
+const route=useRoute(),settingsStore=useSettingsStore()
+const settings=computed(()=>settingsStore.settings)
+const header=ref(null),explore=ref(null)
+const primaryLinks=[{to:'/',label:'Home'},{to:'/about',label:'Who We Are'},{to:'/operations',label:'Services'},{to:'/resources',label:'Resources'},{to:'/blogs',label:'Updates'}]
+const allLinks=[{to:'/report',label:'Report a Case'},...primaryLinks,{to:'/videos',label:'Videos'},{to:'/news',label:'News'},{to:'/faqs',label:'FAQs'},{to:'/contact',label:'Contact Us'},{to:'/reports',label:'Reports & Insights'},{to:'/partners',label:'Our Partners'},{to:'/donate',label:'Donate'}]
+const closeMenus=()=>{if(explore.value)explore.value.open=false}
+const closeOutside=event=>{if(!header.value?.contains(event.target))closeMenus()}
+watch(()=>route.fullPath,closeMenus)
+onMounted(()=>document.addEventListener('click',closeOutside))
+onUnmounted(()=>document.removeEventListener('click',closeOutside))
 </script>
-
-<style scoped></style>
+<style scoped>
+.site-header{position:relative;z-index:50;background:rgba(250,251,249,.95);border-bottom:1px solid var(--ui-separator);backdrop-filter:blur(20px);}
+.site-navbar{max-width:1440px;margin:auto;padding:1.125rem clamp(1.25rem,4vw,4rem);display:flex;align-items:center;gap:2rem;}
+.site-wordmark{display:flex;flex-direction:column;flex-shrink:0;color:var(--ui-label);text-decoration:none;}
+.site-wordmark>span{font-size:1.5rem;font-weight:600;letter-spacing:-.045em;line-height:1.15;}
+.site-wordmark strong{color:var(--ui-accent);font-weight:600;}
+.site-wordmark small{font-size:.6875rem;color:var(--ui-secondary-label);margin-top:.25rem;}
+.site-primary-links{display:flex;align-items:center;gap:1.5rem;justify-content:center;flex:1;}
+.site-primary-links a{min-height:44px;display:flex;align-items:center;position:relative;font-size:.875rem;font-weight:500;white-space:nowrap;}
+.site-primary-links a[aria-current]{color:var(--ui-accent);}
+.site-primary-links a[aria-current]:after{content:'';height:2px;position:absolute;bottom:2px;left:0;right:0;background:var(--ui-accent);border-radius:2px;}
+.site-nav-actions{display:flex;align-items:center;gap:.625rem;margin-left:auto;}
+.site-call,.site-report{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;padding:.625rem 1rem;border-radius:100px;font-size:.875rem;font-weight:500;}
+.site-call{color:var(--ui-accent);background:var(--ui-surface);border:1px solid var(--ui-separator);}
+.site-report{background:var(--ui-accent);color:white;}
+.site-nav-actions svg{width:1rem;height:1rem;stroke-width:1.75;}
+.site-menu{position:relative;}
+.site-menu summary{min-height:44px;cursor:pointer;display:flex;align-items:center;gap:.5rem;list-style:none;font-size:.875rem;padding:.625rem .875rem;border:1px solid var(--ui-separator);border-radius:100px;background:var(--ui-surface);}
+.site-menu summary::-webkit-details-marker{display:none;}
+.site-menu summary>svg:first-child{display:none;}
+.site-menu-panel{position:absolute;right:0;top:calc(100% + 1rem);width:min(460px,calc(100vw - 40px));padding:1.5rem;border-radius:20px;border:1px solid var(--ui-separator);background:var(--ui-surface);box-shadow:var(--ui-shadow);max-height:75dvh;overflow:auto;}
+.site-menu-title{font-size:.8125rem;font-weight:600;color:var(--ui-secondary-label);margin:0 0 1rem;}
+.site-menu-panel nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.25rem .75rem;}
+.site-menu-panel nav a{display:flex;align-items:center;justify-content:space-between;gap:.5rem;min-height:44px;font-size:.9375rem;padding:.5rem;border-radius:8px;}
+.site-menu-panel nav a svg{opacity:.5;width:.875rem;}
+.site-menu-panel nav a:hover,.site-menu-panel nav a[aria-current]{background:var(--ui-tint);color:var(--ui-accent);}
+.site-menu-help{border-top:1px solid var(--ui-separator);margin-top:1rem;padding-top:1rem;font-size:.8125rem;color:var(--ui-secondary-label);}
+.site-menu-help a{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;margin-left:.5rem;font-weight:600;color:var(--ui-accent);}
+.site-header a:focus-visible,.site-menu summary:focus-visible{outline:3px solid var(--ui-focus);outline-offset:4px;}
+@media(max-width:1199px){.site-primary-links{display:none;}.site-navbar{gap:1rem}.site-menu summary>svg:first-child{display:block;}.site-menu summary>span,.site-menu summary>svg:last-child{display:none;}.site-menu summary{width:44px;justify-content:center;padding:0}}
+@media(max-width:639px){.site-navbar{padding:1rem 1.25rem;gap:.5rem}.site-wordmark small{display:none}.site-wordmark>span{font-size:1.375rem}.site-report{display:none}.site-call{padding:.625rem .75rem}.site-nav-actions{gap:.5rem}.site-menu-panel nav{grid-template-columns:1fr}.site-menu-panel{right:0;width:calc(100vw - 40px)}}
+@media(prefers-reduced-transparency:reduce){.site-header{background:var(--ui-background);backdrop-filter:none}}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-b from-white via-white to-gray-50 font-sans">
+  <div class="public-page min-h-screen bg-gradient-to-b from-white via-white to-gray-50 font-sans">
     <!-- 1. Hero Section -->
     <header class="py-16 md:py-20 text-center relative overflow-hidden">
       <!-- Background Gradient Decoration -->
@@ -68,7 +68,7 @@
         <aside class="lg:col-span-4 space-y-6">
 
           <!-- Immediate Help Card -->
-          <div class="bg-red-50 rounded-[2.5rem] p-8 shadow-sm border border-red-100">
+          <div class="bg-red-50 rounded-2xl p-8 shadow-sm border border-red-100">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-600">
                 <TriangleAlert class="w-5 h-5" />
@@ -91,7 +91,7 @@
           </div>
 
           <!-- Other Channels -->
-          <div class="bg-gray-50 rounded-[2.5rem] p-8 border border-gray-100">
+          <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
             <h3 class="font-bold text-secondary text-lg mb-6">Other Ways to Report</h3>
             <div class="space-y-4">
               <div class="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm border border-gray-100">

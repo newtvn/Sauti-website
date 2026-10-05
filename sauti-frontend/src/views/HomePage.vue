@@ -1,5 +1,5 @@
 <template>
-  <div class="community-home">
+  <div class="public-page community-home">
     <section class="community-hero page-width">
       <div class="hero-copy">
         <div class="institutional-marks"><img src="@/assets/sauti-logo.jpeg" alt="Sauti 116 — Speak Up Against Violence" /><img src="@/assets/logo.png" alt="Republic of Uganda" /></div>

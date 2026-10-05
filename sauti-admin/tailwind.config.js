@@ -14,7 +14,7 @@ export default {
         },
         // Sauti Brand Colors
         sauti: {
-          blue: '#009EDB',
+          blue: 'var(--ui-accent)',
           orange: '#FF9900',
           red: '#EC0000',
           greenLight: '#99CC00',
@@ -35,15 +35,15 @@ export default {
           600: '#CC0000',
         },
         info: {
-          500: '#009EDB',
-          600: '#007BAA',
+          500: 'var(--ui-accent)',
+          600: 'var(--ui-accent)',
         },
         // Legacy support mappings
         primary: {
-          50: '#E6F7FF',
-          100: '#B3E5FF',
-          500: '#009EDB',
-          600: '#007BAA',
+          50: 'var(--ui-tint)',
+          100: 'var(--ui-tint)',
+          500: 'var(--ui-accent)',
+          600: 'var(--ui-accent)',
         },
         secondary: {
           500: '#FF9900',
@@ -63,7 +63,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', 'sans-serif'],
       },
       spacing: {
         '18': '4.5rem',

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-neutral-white min-h-screen">
+  <div class="public-page bg-neutral-white min-h-screen">
     <!-- 1. Page Header -->
     <header class="page-header">
       <div class="container-custom">
@@ -15,7 +15,7 @@
     <div class="section-padding !pt-0">
       <div class="container-custom">
         <!-- Partnership in a Flash (Flash Pattern) -->
-        <section class="bg-secondary/5 p-8 md:p-12 rounded-[3.5rem] border-2 border-secondary/10 mb-16 shadow-sm">
+        <section class="bg-secondary/5 p-8 md:p-12 rounded-2xl border-2 border-secondary/10 mb-16 shadow-sm">
           <h2 class="campaign-header text-xl text-secondary mb-8 flex items-center gap-3">
             <ShieldCheckIcon class="w-6 h-6 text-secondary" />
             Partnership at a Glance
@@ -49,7 +49,7 @@
           <div v-else-if="partners.length"
             class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 md:gap-10">
             <div v-for="partner in partners" :key="partner.id"
-              class="group relative bg-neutral-white rounded-[2.5rem] border-2 border-neutral-offwhite p-10 h-56 flex items-center justify-center transition-all duration-500 hover:shadow-2xl hover:border-primary card-base !p-0">
+              class="group relative bg-neutral-white rounded-2xl border-2 border-neutral-offwhite p-10 h-56 flex items-center justify-center transition-all duration-500 hover:shadow-sm hover:border-primary card-base !p-0">
               <a v-if="partner.website_url" :href="partner.website_url" target="_blank"
                 class="flex items-center justify-center h-full w-full p-10">
                 <img :src="partner.logo" :alt="partner.name"
@@ -69,7 +69,7 @@
           </div>
 
           <div v-else
-            class="text-center py-24 bg-neutral-offwhite/10 rounded-[4rem] border-2 border-dashed border-neutral-offwhite">
+            class="text-center py-24 bg-neutral-offwhite/10 rounded-2xl border-2 border-dashed border-neutral-offwhite">
             <div
               class="w-20 h-20 bg-neutral-white border-2 border-neutral-offwhite rounded-2xl flex items-center justify-center mx-auto mb-6 text-neutral-offwhite opacity-50">
               <UserGroupIcon class="w-10 h-10" />
@@ -81,7 +81,7 @@
         <!-- 3. Partnership CTA -->
         <section class="mt-20">
           <div
-            class="bg-primary/5 p-12 md:p-16 rounded-[4rem] border-2 border-primary/20 text-center max-w-4xl mx-auto">
+            class="bg-primary/5 p-12 md:p-16 rounded-2xl border-2 border-primary/20 text-center max-w-4xl mx-auto">
             <h3 class="campaign-header text-3xl text-secondary mb-6">How We Work Together</h3>
             <p class="text-xl font-bold text-muted mb-10 leading-relaxed">
               Interested in joining our mission to protect the children of Uganda? We are always looking for
@@ -104,7 +104,7 @@
   import { usePartnersStore } from '@/store/partners'
   import AppLoader from '@/components/common/AppLoader.vue'
   import BaseCTA from '@/components/common/BaseCTA.vue'
-  import { UserGroupIcon, ShieldCheckIcon } from '@heroicons/vue/24/outline'
+  import { Users as UserGroupIcon, ShieldCheck as ShieldCheckIcon } from 'lucide-vue-next'
 
   defineOptions({
     name: 'PartnersPage'
